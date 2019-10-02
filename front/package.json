@@ -11,8 +11,11 @@
     "test": "npm run test:unit && npm run test:e2e"
   },
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "chromedriver": "^77.0.0",
     "core-js": "^2.6.5",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0",
     "selenium-webdriver": "^4.0.0-alpha.5",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
