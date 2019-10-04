@@ -11,14 +11,30 @@
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" v-model="form.username">
+            <div class="field-error" v-if="$v.form.username.$dirty">
+              <div class="error" v-if="!$v.form.username.required">Username is required</div>
+              <div class="error" v-if="!$v.form.username.alphaNum">Username can only contain letters and numbers</div>
+              <div class="error" v-if="!$v.form.username.minLength">Username must have at least {{$v.form.username.$params.minLength.min}} letters.</div>
+              <div class="error" v-if="!$v.form.username.maxLength">Username is too long. It can contains maximium {{$v.form.username.$params.maxLength.max}} letters.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="email">Email address</label>
             <input type="email" class="form-control" id="email" v-model="form.email">
+            <div class="field-error" v-if="$v.form.email.$dirty">
+              <div class="error" v-if="!$v.form.email.required">Email address is required</div>
+              <div class="error" v-if="!$v.form.email.email">This is not a valid email address</div>
+              <div class="error" v-if="!$v.form.email.maxLength">Email address is too long. It can contains maximium {{$v.form.emailAddress.$params.maxLength.max}} letters.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" v-model="form.password">
+            <div class="field-error" v-if="$v.form.password.$dirty">
+              <div class="error" v-if="!$v.form.password.required">Password is required</div>
+              <div class="error" v-if="!$v.form.password.minLength">Password is too short. It can contains at least {{$v.form.password.$params.minLength.min}} letters.</div>
+              <div class="error" v-if="!$v.form.password.maxLength">Password is too long. It can contains maximium {{$v.form.password.$params.maxLength.max}} letters.</div>
+            </div>
           </div>
           <button type="submit" class="btn btn-primary btn-block">Create account</button>
           <p class="accept-terms text-muted">By clicking “Create account”, you agree to our <a href="#">terms of service</a> and <a href="#">privacy policy</a>.</p>
@@ -40,6 +56,7 @@
 
 <script>
   import registrationService from '@/services/registration'
+  import {required, email, minLength, maxLength, alphaNum} from 'vuelidate/lib/validators'
   export default {
     name: "RegisterPage",
     data: function () {
@@ -55,12 +72,36 @@
     methods:{
       submitForm(){
         //TODO: Validate data
+        this.$v.$touch()
+        if(this.$v.$invalid){
+          return
+        }
         registrationService.register(this.form).then(()=>{
           this.$router.push({name:'LoginPage'})
         }).catch((error)=>{
           this.errorMessage = 'Failed to register user: ' + (error.message ? error.message : 'Unknown') + "."
         })
 
+      }
+    },
+    validations: {
+      form: {
+        username: {
+          required,
+          minLength: minLength(2),
+          maxLength: maxLength(50),
+          alphaNum
+        },
+        email: {
+          required,
+          email,
+          maxLength: maxLength(100)
+        },
+        password: {
+          required,
+          minLength: minLength(6),
+          maxLength: maxLength(30)
+        }
       }
     }
   }
@@ -111,5 +152,11 @@
   a {
     color: #666;
   }
+  .field-error .error{
+    color: rgba(146, 18, 21, 0.93);
+  }
+
+
+
 </style>
 
