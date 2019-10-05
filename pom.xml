@@ -17,6 +17,7 @@
 
     <properties>
         <java.version>11</java.version>
+        <apache.version>3.9</apache.version>
     </properties>
 
     <dependencies>
@@ -68,13 +69,12 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.codehaus.mojo/exec-maven-plugin -->
+        <!--apache commons-->
         <dependency>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>1.6.0</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>
