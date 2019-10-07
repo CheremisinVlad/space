@@ -1,5 +1,6 @@
 package com.own.space.web.controller;
 
+import com.own.space.config.SecurityConfig;
 import com.own.space.service.UserService;
 import com.own.space.util.UserUtil;
 import com.own.space.web.payload.UserTo;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -22,7 +25,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = RegistrationController.class,secure = false)
+@WebMvcTest(value = RegistrationController.class)
+@ActiveProfiles("test")
+@ContextConfiguration(classes = {SecurityConfig.class,RegistrationController.class})
 public class RegistrationControllerTest {
 
     @Autowired
