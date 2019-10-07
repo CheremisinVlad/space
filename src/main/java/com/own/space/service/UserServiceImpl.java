@@ -1,9 +1,12 @@
 package com.own.space.service;
 
 import com.own.space.domain.User;
+import com.own.space.util.events.user.UserCreatedEvent;
+import com.own.space.util.events.EventPublisher;
+import com.own.space.util.mail.Email;
+import com.own.space.util.mail.MailSender;
 import com.own.space.repository.UserRepository;
 import com.own.space.util.exceptions.NotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,14 +18,31 @@ import static com.own.space.util.Validation.*;
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService{
 
-    @Autowired
+
     private UserRepository repository;
+
+    private EventPublisher publisher;
+
+    private MailSender sender;
+
+    public UserServiceImpl(UserRepository repository, EventPublisher publisher, MailSender sender) {
+        this.repository = repository;
+        this.publisher = publisher;
+        this.sender = sender;
+    }
 
     @Override
     @Transactional
     public User create(User user) {
         checkNew(user);
-        return repository.save(user);
+        User newUser = repository.save(user);
+        sendRegistrationMessage(newUser);
+        publisher.publish(new UserCreatedEvent(newUser));
+        return newUser;
+    }
+
+    private void sendRegistrationMessage(User user) {
+        sender.send(new Email(user.getEmail(),"templete","welcome"));
     }
 
     @Override

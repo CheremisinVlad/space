@@ -1,4 +1,4 @@
-package com.own.space.aspects;
+package com.own.space.util.aspects;
 
 import com.own.space.util.exceptions.InconsistentDataException;
 import org.aspectj.lang.annotation.AfterThrowing;

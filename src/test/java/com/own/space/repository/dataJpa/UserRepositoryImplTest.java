@@ -1,9 +1,11 @@
 package com.own.space.repository.dataJpa;
 
-import com.own.space.aspects.RepositoryExceptionInterceptor;
+import com.own.space.util.aspects.RepositoryExceptionInterceptor;
 import com.own.space.data.UserTestData;
 import com.own.space.domain.User;
 import com.own.space.repository.UserRepository;
+import com.own.space.util.encription.PasswordEncryptor;
+import com.own.space.util.encription.SimplePasswordEncryptor;
 import com.own.space.util.exceptions.InconsistentDataException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,7 +39,11 @@ public class UserRepositoryImplTest {
     public static class UserRepositoryTestConfig{
         @Bean
         public UserRepository userRepository(CrudUserRepository crud){
-            return new UserRepositoryImpl(crud);
+            return new UserRepositoryImpl(crud,passwordEncryptor());
+        }
+        @Bean
+        public PasswordEncryptor passwordEncryptor(){
+            return new SimplePasswordEncryptor();
         }
         @Bean
         public RepositoryExceptionInterceptor serviceAspect(){
