@@ -1,6 +1,7 @@
 package com.own.space.repository.dataJpa;
 
 import com.own.space.domain.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional(readOnly = true)
+
 public interface CrudUserRepository extends JpaRepository<User,Integer> {
-    @Transactional
+
     @Override
     User save(User user);
 
@@ -19,4 +20,8 @@ public interface CrudUserRepository extends JpaRepository<User,Integer> {
 
     @Override
     List<User> findAll(Sort sort);
+
+    User findByName(String name);
+
+    User getByEmail(String email);
 }

@@ -1,21 +1,15 @@
 package com.own.space.service;
 
-import com.own.space.SpaceApplication;
 import com.own.space.domain.User;
 import com.own.space.repository.UserRepository;
 import com.own.space.util.exceptions.NotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
@@ -66,7 +60,7 @@ public class UserServiceImplTest {
 
     @Test
     public void get_existingUser_shouldPass() {
-        doReturn(USER_VLAD).when(mockRepository).get(USER_VLAD_ID);
+        doReturn(USER_VLAD).when(mockRepository).getById(USER_VLAD_ID);
 
         User userVlad = service.get(USER_VLAD_ID);
 
@@ -74,7 +68,7 @@ public class UserServiceImplTest {
     }
     @Test(expected = NotFoundException.class)
     public void get_notExistingUser(){
-        doThrow(NotFoundException.class).when(mockRepository).get(1);
+        doThrow(NotFoundException.class).when(mockRepository).getById(1);
         service.get(1);
     }
 

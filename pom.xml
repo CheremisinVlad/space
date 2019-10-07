@@ -73,8 +73,9 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>${apache.version}</version>
+            <!--<version>${apache.version}</version>-->
         </dependency>
+
     </dependencies>
 
     <build>

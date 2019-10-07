@@ -8,7 +8,11 @@ public interface UserRepository {
 
     User save(User user);
 
-    User get(int id);
+    User getById(int id);
 
     List<User> getAll();
+
+    User getByUsername(String name);
+
+    User getByEmail(String email);
 }
