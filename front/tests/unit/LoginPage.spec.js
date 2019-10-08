@@ -82,7 +82,6 @@ describe('LoginPage.vue', () => {
     wrapper.vm.submitForm()
     expect(authSpy).toBeCalled()
     await wrapper.vm.$nextTick()
-    console.log(stub.mockReturnValue())
     expect(stub).toHaveBeenCalledWith({name: 'HomePage'})
   })
 
