@@ -8,7 +8,7 @@ ALTER SEQUENCE directories_seq RESTART WITH 10000;
 ALTER SEQUENCE users_seq RESTART WITH 1000;
 
 
-INSERT INTO users (name, email, password) VALUES
+INSERT INTO users (name, emailMessage, password) VALUES
 ('vlad','cheremisinvladw@gmail.com','password'),
 ('vasya','vasya@mail.com','yavasya');
 

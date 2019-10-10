@@ -1,7 +1,7 @@
 import moxios from "moxios"
 import authenticationService from '@/services/authentication'
 
-describe('service/authentications', function () {
+describe('service/authentication', function () {
   beforeEach(()=>{
     moxios.install()
   })
@@ -10,11 +10,11 @@ describe('service/authentications', function () {
     moxios.uninstall()
   })
 
-  it('should perform call to /authentications',()=>{
+  it('should perform call to /authentication',()=>{
     expect.assertions(1)
     moxios.wait(()=>{
       let request = moxios.requests.mostRecent()
-      expect(request.url).toEqual('/authentications')
+      expect(request.url).toEqual('/authentication')
       request.respondWith({
         status: 200,
         response: {result: 'success'}

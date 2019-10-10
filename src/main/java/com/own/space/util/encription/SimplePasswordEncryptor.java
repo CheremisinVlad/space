@@ -1,13 +1,28 @@
 package com.own.space.util.encription;
 
-import org.apache.commons.lang3.RandomStringUtils;
+import com.own.space.util.exceptions.InconsistentDataException;
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SimplePasswordEncryptor implements PasswordEncryptor {
+
+    private PasswordEncoder encoder;
+
+    public SimplePasswordEncryptor(PasswordEncoder encoder) {
+        this.encoder = encoder;
+    }
+
     @Override
     public String encrypt(String password) {
-        //todo
-        return RandomStringUtils.random(password.length(),true,true);
+        validate(password);
+        return encoder.encode(password);
+    }
+
+    private void validate(String password) {
+        if(password.isBlank()|| password.length()<5 || password.length()>100){
+            throw new InconsistentDataException("invalid password");
+        }
     }
 }

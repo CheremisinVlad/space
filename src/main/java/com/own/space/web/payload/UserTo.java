@@ -1,5 +1,6 @@
 package com.own.space.web.payload;
 
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -10,8 +11,8 @@ public class UserTo {
     private String username;
 
     @NotNull
-    @Email(message = "Email address should be valid")
-    @Size(max = 100,message = "Email address must be less then 100 symbols")
+    @Email(message = "EmailMessage address should be valid")
+    @Size(max = 100,message = "EmailMessage address must be less then 100 symbols")
     private String email;
 
     @Size(min = 6,max = 30,message = "Password must be between 6 and 30 symbols")
@@ -41,4 +42,6 @@ public class UserTo {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }

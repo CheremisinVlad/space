@@ -1,12 +1,15 @@
 package com.own.space.service;
 
+import com.own.space.domain.AuthUser;
 import com.own.space.domain.User;
 import com.own.space.util.events.user.UserCreatedEvent;
 import com.own.space.util.events.EventPublisher;
-import com.own.space.util.mail.Email;
+import com.own.space.util.mail.EmailMessage;
 import com.own.space.util.mail.MailSender;
 import com.own.space.repository.UserRepository;
 import com.own.space.util.exceptions.NotFoundException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,7 +45,7 @@ public class UserServiceImpl implements UserService{
     }
 
     private void sendRegistrationMessage(User user) {
-        sender.send(new Email(user.getEmail(),"templete","welcome"));
+        sender.send(new EmailMessage(user.getEmail(),"templete","welcome"));
     }
 
     @Override
@@ -53,5 +56,22 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<User> getAll() {
         return  repository.getAll();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String mailOrName) throws UsernameNotFoundException {
+        if(mailOrName == null || mailOrName.isBlank()){
+            throw new UsernameNotFoundException("mailOrName must be not empty");
+        }
+        User user;
+        if(mailOrName.contains("@")){
+            user = repository.getByEmail(mailOrName);
+        }else{
+            user = repository.getByUsername(mailOrName);
+        }
+        if(user==null){
+            throw new UsernameNotFoundException(String.format("user with username %s not found",mailOrName));
+        }
+        return AuthUser.getPrincipal(user);
     }
 }

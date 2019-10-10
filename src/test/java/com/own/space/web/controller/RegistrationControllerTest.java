@@ -25,10 +25,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = RegistrationController.class)
+@WebMvcTest()
 @ActiveProfiles("test")
 @ContextConfiguration(classes = {SecurityConfig.class,RegistrationController.class})
 public class RegistrationControllerTest {
+    private static final String URL = "/api/registration";
 
     @Autowired
     private MockMvc mvc;
@@ -38,7 +39,7 @@ public class RegistrationControllerTest {
 
     @Test
     public void register_blankUserTo_shouldFailAndReturn400() throws Exception{
-        mvc.perform(post("/api/registrations"))
+        mvc.perform(post(URL))
                 .andExpect(status()
                         .is(400));
     }
@@ -53,9 +54,9 @@ public class RegistrationControllerTest {
                 .when(mockService)
                 .create(UserUtil.transferUserTransferObjectToUser(existed));
 
-        mvc.perform(post("/api/registrations")
+        mvc.perform(post(URL)
                   .contentType(MediaType.APPLICATION_JSON)
-                  .content(JsonUtils.toJson(existed)))
+                  .content(JsonUtils.jsonFromObj(existed)))
                     .andExpect(status().is(400))
                     .andExpect(jsonPath("message").value("username already exist"));
     }
@@ -71,9 +72,9 @@ public class RegistrationControllerTest {
                 .create(UserUtil.transferUserTransferObjectToUser(existed));
 
         mvc.perform(
-                post("/api/registrations")
+                post(URL)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonUtils.toJson(existed)))
+                        .content(JsonUtils.jsonFromObj(existed)))
                 .andExpect(status().is(400))
                 .andExpect(jsonPath("message").value("email address already exist"));
     }
@@ -88,9 +89,9 @@ public class RegistrationControllerTest {
                 .create(UserUtil.transferUserTransferObjectToUser(existed));
 
         mvc.perform(
-                post("/api/registrations")
+                post(URL)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonUtils.toJson(existed)))
+                        .content(JsonUtils.jsonFromObj(existed)))
                 .andExpect(status().is(201));
     }
 

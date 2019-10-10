@@ -2,10 +2,11 @@ package com.own.space.service;
 
 import com.own.space.domain.User;
 import com.own.space.util.exceptions.NotFoundException;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
 
    User create(User user);
 

@@ -23,7 +23,7 @@ public class RegistrationController {
         this.service = service;
     }
 
-    @PostMapping("/api/registrations")
+    @PostMapping("/api/registration")
     public ResponseEntity<RequestResult> create(@Valid @RequestBody UserTo to){
         try{
             service.create(UserUtil.transferUserTransferObjectToUser(to));

@@ -6,10 +6,10 @@
         <form @submit.prevent="submitForm">
           <div v-show="errorMessage" class="alert alert-danger failed">{{ errorMessage }}</div>
           <div class="form-group">
-            <label for="username">Username or email</label>
+            <label for="username">Username or emailMessage</label>
             <input type="text" class="form-control" id="username" v-model="form.username">
             <div class="field-error" v-if="$v.form.username.$dirty">
-              <div class="error" v-if="!$v.form.username.required">input username or email</div>
+              <div class="error" v-if="!$v.form.username.required">input username or emailMessage</div>
             </div>
           </div>
           <div class="form-group">
@@ -70,7 +70,7 @@
         authenticationService.authenticate(this.form).then(()=>{
           this.$router.push({name: 'HomePage'})
         }).catch((error)=>{
-          this.errorMessage = error.message
+          this.errorMessage = error.template
         })
 
       }

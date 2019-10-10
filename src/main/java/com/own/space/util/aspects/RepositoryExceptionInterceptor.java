@@ -30,6 +30,8 @@ public class RepositoryExceptionInterceptor {
                 return new InconsistentDataException("data don't unique");
             }else if(root instanceof javax.validation.ConstraintViolationException){
                 return new InconsistentDataException("data don't pass validation");
+            }else if(root instanceof InconsistentDataException){
+                return new InconsistentDataException("data don't pass validation");
             }
             root = root.getCause();
         }

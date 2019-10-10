@@ -1,5 +1,7 @@
 package com.own.space.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -61,7 +63,6 @@ public class User extends AbstractBaseEntity{
     public User(User user) {
         this(user.getId(),user.getName(),user.getRegistered(),user.getEmail(),user.getPassword());
     }
-
     public String getName() {
         return name;
     }
@@ -93,6 +94,8 @@ public class User extends AbstractBaseEntity{
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 
 
     @Override

@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
@@ -43,7 +44,7 @@ public class UserRepositoryImplTest {
         }
         @Bean
         public PasswordEncryptor passwordEncryptor(){
-            return new SimplePasswordEncryptor();
+            return new SimplePasswordEncryptor(new BCryptPasswordEncoder());
         }
         @Bean
         public RepositoryExceptionInterceptor serviceAspect(){
