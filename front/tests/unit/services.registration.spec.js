@@ -10,6 +10,19 @@ describe('services/registration',() =>{
     moxios.uninstall()
   })
 
+  it('should call /registrations ', () => {
+    expect.assertions(1)
+    moxios.wait(() => {
+      let request = moxios.requests.mostRecent()
+      expect(request.url).toEqual('/registration')
+      request.respondWith({
+        status: 200,
+        response: {result: 'success'}
+      })
+    })
+    return registrationService.register()
+  })
+
   it('should pass the response to caller when request succeeded',()=>{
     expect.assertions(2)
     moxios.wait(()=>{
@@ -31,12 +44,14 @@ describe('services/registration',() =>{
       let request = moxios.requests.mostRecent();
       expect(request).toBeTruthy()
       request.reject({
-        status: 400,
-        response: {message: 'Bad request'}
+        response: {
+          status: 400,
+          data: {message: 'Bad request'}
+        }
       })
     })
     return registrationService.register().catch(error => {
-      expect(error.response.message).toEqual('Bad request')
+      expect(error.message).toEqual('Bad request')
     })
   })
 })

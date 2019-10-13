@@ -1,4 +1,5 @@
 import axios from 'axios'
+import errorParser from '@/util/error-parser'
 
 export default {
   authenticate(user){
@@ -6,7 +7,7 @@ export default {
       axios.post("/authentication",user).then(({data})=>{
         resolve(data)
       }).catch((error)=>{
-        reject(error)
+        reject(errorParser.parse(error))
       })
     })
   }

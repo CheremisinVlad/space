@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import errorParser from '@/util/error-parser'
 
 export default {
   register(detail){
@@ -7,7 +7,7 @@ export default {
       axios.post('/registration',detail).then(({data}) => {
         resolve(data)
       }).catch((error) =>{
-        reject(error)
+        reject(errorParser.parse(error))
       })
     })
   }

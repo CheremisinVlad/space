@@ -44,13 +44,15 @@ describe('service/authentication', function () {
       let request = moxios.requests.mostRecent()
       expect(request).toBeTruthy()
       request.reject({
-        status: 400,
-        response: {result: 'fail'}
+        response: {
+          status: 400,
+          data: {message: 'Bad request'}
+        }
       })
 
     })
     return authenticationService.authenticate().catch(error=>{
-      expect(error.response.result).toEqual('fail')
+      expect(error.message).toEqual('Bad request')
     })
   })
 
