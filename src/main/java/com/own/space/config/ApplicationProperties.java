@@ -10,7 +10,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Configuration
-@ConfigurationProperties("app")
+@ConfigurationProperties(prefix = "app")
 @Validated
 @Getter
 @Setter

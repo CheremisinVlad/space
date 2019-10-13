@@ -15,6 +15,7 @@ import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
@@ -39,7 +40,7 @@ public class SimpleMailSenderTest {
 
     @Before
     public void setUp() throws Exception {
-        senderMock = Mockito.mock(Mailer.class);
+        senderMock = mock(Mailer.class);
         simpleMailSender = new SimpleMailSender(MAIL_FROM,senderMock,configuration);
     }
 

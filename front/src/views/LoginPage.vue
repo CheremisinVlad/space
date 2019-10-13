@@ -64,13 +64,14 @@
     methods: {
       submitForm(){
         this.$v.$touch()
-        if(this.$v.$invalid){
+        if(this.$v.$error){
           return
         }
         authenticationService.authenticate(this.form).then(()=>{
           this.$router.push({name: 'HomePage'})
         }).catch((error)=>{
-          this.errorMessage = error.template
+          this.errorMessage = error.message
+
         })
 
       }

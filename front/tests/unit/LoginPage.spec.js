@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import { mount, createLocalVue } from '@vue/test-utils'
 import Vuelidate from 'vuelidate'
 import VueRouter from 'vue-router'
@@ -89,7 +88,7 @@ describe('LoginPage.vue', () => {
     expect.assertions(3)
 
     wrapper.vm.form.username = 'vlad'
-    wrapper.vm.form.password = 'incorrect'
+    wrapper.vm.form.password = 'wrong'
 
     expect(wrapper.find('.failed').isVisible()).toBe(false)
 
@@ -97,6 +96,7 @@ describe('LoginPage.vue', () => {
 
     expect(authSpy).toBeCalled()
     await wrapper.vm.$nextTick()
+    console.log(wrapper.find('.failed').isVisible())
     expect(wrapper.find('.failed').isVisible()).toBe(true)
   })
 

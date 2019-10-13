@@ -3,6 +3,7 @@ package com.own.space.util.mail;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -16,6 +17,7 @@ public class AsyncMailer implements Mailer {
 
     private JavaMailSender sender;
 
+    @Autowired
     public AsyncMailer(JavaMailSender sender) {
         this.sender = sender;
     }

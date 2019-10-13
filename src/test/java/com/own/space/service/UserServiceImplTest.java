@@ -3,21 +3,25 @@ package com.own.space.service;
 import com.own.space.data.UserTestData;
 import com.own.space.domain.User;
 import com.own.space.repository.UserRepository;
-import com.own.space.util.UserUtil;
+
+import com.own.space.repository.dataJpa.UserRepositoryImpl;
 import com.own.space.util.exceptions.NotFoundException;
-import org.assertj.core.api.Assertions;
-import org.junit.Assert;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataAccessException;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 
 import java.util.Date;
 import java.util.List;
@@ -32,11 +36,23 @@ import static org.mockito.Mockito.*;
 @ActiveProfiles(value = "test")
 public class UserServiceImplTest {
 
+
     @Autowired
     private UserService service;
 
     @MockBean
     private UserRepository mockRepository;
+
+    @TestConfiguration
+    public static class MailSenderConfig{
+        @Bean
+        public JavaMailSender javaMailSender(){
+            return new JavaMailSenderImpl();
+        }
+
+    }
+
+
 
     @Test
     public void create_newUser_shouldPass() {

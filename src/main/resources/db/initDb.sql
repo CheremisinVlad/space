@@ -12,11 +12,11 @@ CREATE SEQUENCE content_seq START WITH 100000;
 CREATE TABLE users(
   id               INTEGER PRIMARY KEY DEFAULT nextval('users_seq'),
   name             VARCHAR                 NOT NULL,
-  emailMessage            VARCHAR                 NOT NULL,
+  email           VARCHAR                 NOT NULL,
   password         VARCHAR                 NOT NULL,
   registered       TIMESTAMP DEFAULT now() NOT NULL
 );
-CREATE UNIQUE INDEX users_unique_email_idx ON users (emailMessage);
+CREATE UNIQUE INDEX users_unique_email_idx ON users (email);
 
 CREATE TABLE directories(
   id                  INTEGER PRIMARY KEY DEFAULT nextval('directories_seq'),

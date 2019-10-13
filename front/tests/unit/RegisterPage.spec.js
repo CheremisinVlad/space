@@ -4,9 +4,12 @@ import Vuelidate from 'vuelidate'
 import registrationService from '@/services/registration'
 import RegisterPage from '@/views/RegisterPage'
 
+
 const localVue = createLocalVue()
+
 localVue.use(VueRouter)
 localVue.use(Vuelidate)
+
 const router = new VueRouter()
 
 jest.mock('@/services/registration')
@@ -19,6 +22,7 @@ describe("RegisterPage.vue",()=>{
     let buttonSubmit
     let registerSpy
   beforeEach(() => {
+
     wrapper = mount(RegisterPage, {
       localVue, router
     })
@@ -35,7 +39,6 @@ describe("RegisterPage.vue",()=>{
   afterAll(() => {
     jest.restoreAllMocks()
   })
-
   it('should render registration form',()=>{
     expect(wrapper.find('.logo').attributes().src).toEqual('/images/logo.png')
     expect(wrapper.find('.tagline').text()).toEqual('Organize your space like your want')

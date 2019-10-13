@@ -16,12 +16,12 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="emailMessage">Email address</label>
-            <input type="emailMessage" class="form-control" id="emailMessage" v-model="form.emailMessage">
-            <div class="field-error" v-if="$v.form.emailMessage.$dirty">
-              <div class="error" v-if="!$v.form.emailMessage.required">Email address is required</div>
-              <div class="error" v-if="!$v.form.emailMessage.emailMessage">This is not a valid emailMessage address</div>
-              <div class="error" v-if="!$v.form.emailMessage.maxLength">Email address is too long. It can contains maximium {{$v.form.emailAddress.$params.maxLength.max}} letters.</div>
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" v-model="form.email">
+            <div class="field-error" v-if="$v.form.email.$dirty">
+              <div class="error" v-if="!$v.form.email.required">Email address is required</div>
+              <div class="error" v-if="!$v.form.email.email">This is not a valid email address</div>
+              <div class="error" v-if="!$v.form.email.maxLength">Email address is too long. It can contains maximium {{$v.form.email.$params.maxLength.max}} letters.</div>
             </div>
           </div>
           <div class="form-group">
@@ -47,14 +47,14 @@
   import registrationService from '@/services/registration'
   import Logo from '@/components/Logo.vue'
   import Footer from '@/components/Footer.vue'
-  import {required, emailMessage, minLength, maxLength, alphaNum} from 'vuelidate/lib/validators'
+  import {required, email, minLength, maxLength, alphaNum} from 'vuelidate/lib/validators'
   export default {
     name: "RegisterPage",
     data: function () {
       return {
         form: {
           username: '',
-          emailMessage: '',
+          email: '',
           password: ''
         },
         errorMessage: ''
@@ -85,9 +85,9 @@
           maxLength: maxLength(50),
           alphaNum
         },
-        emailMessage: {
+        email: {
           required,
-          emailMessage,
+          email,
           maxLength: maxLength(100)
         },
         password: {
@@ -105,8 +105,4 @@
   .field-error .error{
     color: rgba(146, 18, 21, 0.93);
   }
-
-
-
 </style>
-
