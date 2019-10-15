@@ -52,8 +52,6 @@ public class UserServiceImplTest {
 
     }
 
-
-
     @Test
     public void create_newUser_shouldPass() {
         User newUser = new User("Ivan",new Date(),"ivan@mail.com","lolic");
@@ -145,5 +143,79 @@ public class UserServiceImplTest {
         verify(mockRepository, never()).getByEmail(username);
         assertNotNull(userDetails);
         assertEquals(username, userDetails.getUsername());
+    }
+    @Test
+    public void getUserByUsername_existUsername_shouldSucceed() {
+        String username= "vlad";
+        when(mockRepository.getByUsername(username)).thenReturn(USER_VLAD);
+
+        Exception exception = null;
+        User user = null;
+        try {
+            user = service.getByName(username);
+        } catch (Exception e) {
+            exception = e;
+        }
+
+        assertNull(exception);
+        verify(mockRepository).getByUsername(username);
+        verify(mockRepository, never()).getByEmail(username);
+        assertNotNull(user);
+        assertEquals(username, user.getName());
+    }
+    @Test
+    public void getUserByEmail_existEmail_shouldSucceed() {
+        String email= "cheremisinvladw@gmail.com";
+        when(mockRepository.getByEmail(email)).thenReturn(USER_VLAD);
+
+        Exception exception = null;
+        User user = null;
+        try {
+            user = service.getByEmail(email);
+        } catch (Exception e) {
+            exception = e;
+        }
+
+        assertNull(exception);
+        verify(mockRepository).getByEmail(email);
+        verify(mockRepository, never()).getByUsername(email);
+        assertNotNull(user);
+        assertEquals(email, user.getEmail());
+    }
+    @Test
+    public void getUserByUsername_notExistUsername_shouldFail() {
+        String username= "Incorrect";
+        when(mockRepository.getByUsername(username)).thenThrow(NotFoundException.class);
+
+        Exception exception = null;
+        User user = null;
+        try {
+            user = service.getByName(username);
+        } catch (Exception e) {
+            exception = e;
+        }
+        assertTrue(exception instanceof NotFoundException);
+        assertNotNull(exception);
+        verify(mockRepository).getByUsername(username);
+        verify(mockRepository, never()).getByEmail(username);
+        assertNull(user);
+    }
+    @Test
+    public void getUserByEmail_notExistEmail_shouldFail() {
+        String email= "Incorrect@email.com";
+        when(mockRepository.getByEmail(email)).thenThrow(NotFoundException.class);
+
+        Exception exception = null;
+        User user = null;
+        try {
+            user = service.getByEmail(email);
+        } catch (Exception e) {
+            exception = e;
+        }
+        assertTrue(exception instanceof NotFoundException);
+        assertNotNull(exception);
+        verify(mockRepository).getByEmail(email);
+        verify(mockRepository, never()).getByUsername(email);
+        assertNull(user);
     }
 }

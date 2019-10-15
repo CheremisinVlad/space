@@ -13,4 +13,8 @@ public interface UserService extends UserDetailsService {
     User get(int userId) throws NotFoundException;
 
     List<User> getAll();
+
+    User getByName(String name) throws NotFoundException;
+
+    User getByEmail(String email) throws NotFoundException;
 }

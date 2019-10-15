@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService{
     }
 
     private void sendRegistrationMessage(User user) {
-        sender.send(new EmailMessage(user.getEmail(),"templete","welcome"));
+        sender.send(new EmailMessage(user.getEmail(),"template","welcome"));
     }
 
     @Override
@@ -56,6 +56,16 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<User> getAll() {
         return  repository.getAll();
+    }
+
+    @Override
+    public User getByName(String name) throws NotFoundException {
+        return checkNotFoundWithCredentials(repository.getByUsername(name),name);
+    }
+
+    @Override
+    public User getByEmail(String email) throws NotFoundException {
+        return checkNotFoundWithCredentials(repository.getByEmail(email),email);
     }
 
     @Override

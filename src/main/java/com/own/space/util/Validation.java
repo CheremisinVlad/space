@@ -19,6 +19,10 @@ public class Validation {
         return checkNotFound(obj,"id" + id);
     }
 
+    public static <T> T checkNotFoundWithCredentials(T obj,String id) throws NotFoundException {
+        return checkNotFound(obj,"id" + id);
+    }
+
     private static <T> T checkNotFound(T obj, String message) {
         if (Objects.nonNull(obj)) {
             return obj;
