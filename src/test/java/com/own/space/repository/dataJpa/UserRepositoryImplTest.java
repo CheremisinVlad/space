@@ -29,7 +29,7 @@ import static org.junit.Assert.*;
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
-@Sql(scripts = "classpath:db/import.sql",config = @SqlConfig(encoding = "UTF-8"))
+@Sql(scripts = "classpath:db/h2/createUserDb.sql",config = @SqlConfig(encoding = "UTF-8"))
 public class UserRepositoryImplTest {
 
     @Autowired
@@ -47,7 +47,7 @@ public class UserRepositoryImplTest {
             return new SimplePasswordEncryptor(new BCryptPasswordEncoder());
         }
         @Bean
-        public RepositoryExceptionInterceptor serviceAspect(){
+        public RepositoryExceptionInterceptor repositoryExceptionInterceptor(){
             return new RepositoryExceptionInterceptor();
         }
     }

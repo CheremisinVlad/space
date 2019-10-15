@@ -33,3 +33,4 @@ build/
 
 ### app files###
 application-dev.properties
+api-example

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-
 public class UserRepositoryImpl implements UserRepository {
     public static final Sort SORT_BY_NAME = Sort.by("name");
 

@@ -1,6 +1,8 @@
 package com.own.space.domain;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -8,12 +10,15 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Objects;
 
 import static com.own.space.domain.AbstractBaseEntity.USERS_SEQ;
 
 @Entity
 @SequenceGenerator(name="abstract_gen",sequenceName = "USERS_SEQ",allocationSize = 1,initialValue = USERS_SEQ)
 @Table(name = "users",uniqueConstraints ={@UniqueConstraint(columnNames = "email",name = "users_unique_email_idx")})
+@Setter
+@Getter
 public class User extends AbstractBaseEntity{
     @Column(name = "name")
     @Size(min = 2,max =30)
@@ -63,40 +68,20 @@ public class User extends AbstractBaseEntity{
     public User(User user) {
         this(user.getId(),user.getName(),user.getRegistered(),user.getEmail(),user.getPassword());
     }
-    public String getName() {
-        return name;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(name, user.name) &&
+                Objects.equals(email, user.email);
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), name, email);
     }
-
-    public Date getRegistered() {
-        return registered;
-    }
-
-    public void setRegistered(Date registered) {
-        this.registered = registered;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
-
 
     @Override
     public String toString() {

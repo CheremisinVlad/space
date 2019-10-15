@@ -32,6 +32,8 @@ public class RepositoryExceptionInterceptor {
                 return new InconsistentDataException("data don't pass validation");
             }else if(root instanceof InconsistentDataException){
                 return new InconsistentDataException("data don't pass validation");
+            }else if(root instanceof IllegalArgumentException){
+                return new InconsistentDataException("data don't pass validation");
             }
             root = root.getCause();
         }

@@ -7,7 +7,7 @@ import java.util.Objects;
 @Access(AccessType.FIELD)
 public abstract class AbstractBaseEntity {
 
-    public static final int USERS_SEQ = 1000;
+    public static final int USERS_SEQ = 1_000;
     public static final int DIRECTORIES_SEQ = 10_000;
     public static final int CONTENT_SEQ = 100_000;
 

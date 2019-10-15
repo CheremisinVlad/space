@@ -196,7 +196,7 @@
                         </goals>
                         <phase>prepare-package</phase>
                         <configuration>
-                            <outputDirectory>${env.SPACE_ROOT}/src/main/resources/templates</outputDirectory>
+                            <outputDirectory>${env.SPACE_ROOT}/src/isMain/resources/templates</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>front/dist</directory>
@@ -212,7 +212,7 @@
                         </goals>
                         <phase>prepare-package</phase>
                         <configuration>
-                            <outputDirectory>${env.SPACE_ROOT}/src/main/resources/static</outputDirectory>
+                            <outputDirectory>${env.SPACE_ROOT}/src/isMain/resources/static</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>front/dist</directory>
@@ -244,7 +244,7 @@
                         </goals>
                         <phase>prepare-package</phase>
                         <configuration>
-                            <outputDirectory>${env.SPACE_ROOT}/src/main/resources/static</outputDirectory>
+                            <outputDirectory>${env.SPACE_ROOT}/src/isMain/resources/static</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>front/dist</directory>
@@ -261,11 +261,11 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>${env.SPACE_ROOT}/src/main/resources/static/static</directory>
+                            <directory>${env.SPACE_ROOT}/src/isMain/resources/static/static</directory>
 
                         </fileset>
                         <fileset>
-                            <directory>${env.SPACE_ROOT}/src/main/resources/templates</directory>
+                            <directory>${env.SPACE_ROOT}/src/isMain/resources/templates</directory>
                             <includes>
                                 <include>index.html</include>
                             </includes>
