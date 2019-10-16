@@ -75,4 +75,12 @@ public class DirectoryTestData {
     public static Directory createDirectory2ForVladWithoutId() {
         return new Directory(DIRECTORY2_VLAD_ID,"patterns",USER_VLAD_ID,DIRECTORY1_VLAD_ID,false);
     }
+
+    public static Directory updateDirectory1ForVlad() {
+        return new Directory(DIRECTORY1_VLAD_ID,"new patterns",USER_VLAD_ID,0,true);
+    }
+
+    public static Directory createNotExisted() {
+        return new Directory(1,"not exist",1,0,true);
+    }
 }

@@ -1,4 +1,4 @@
-package com.own.space.util;
+package com.own.space.service.validation;
 
 import com.own.space.domain.AbstractBaseEntity;
 import com.own.space.util.exceptions.NotFoundException;

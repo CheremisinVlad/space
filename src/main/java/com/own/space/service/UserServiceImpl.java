@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static com.own.space.util.Validation.*;
+import static com.own.space.service.validation.Validation.*;
 
 @Service
 @Transactional(readOnly = true)

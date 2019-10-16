@@ -54,7 +54,7 @@ public class UserServiceImplTest {
 
     @Test
     public void create_newUser_shouldPass() {
-        User newUser = new User("Ivan",new Date(),"ivan@mail.com","lolic");
+        User newUser = UserTestData.createNewUserForService();
 
         when(mockRepository.save(newUser)).thenReturn(newUser);
         when(mockRepository.getAll()).thenReturn(List.of(newUser,USER_VASYA,USER_VLAD));

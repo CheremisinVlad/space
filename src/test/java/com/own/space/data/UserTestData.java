@@ -71,4 +71,8 @@ public class UserTestData {
     public static User createWithAlreadyExistedEmail() {
         return new User(1,"vlad2","cheremisinvladw@gmail.com","password2");
     }
+
+    public static User createNewUserForService() {
+        return new User("Ivan",new Date(),"ivan@mail.com","lolic");
+    }
 }
