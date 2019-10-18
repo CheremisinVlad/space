@@ -6,6 +6,7 @@
     <div class="search-box flex-fill" >
       <div class="search-wrapper">
         <input type="text" placeholder="Search" class="form-control form-control-sm" />
+
       </div>
     </div>
     <div class="profile-toggle">
@@ -23,9 +24,22 @@
 
 </template>
 <script>
+  import { mapGetters } from 'vuex'
 
     export default {
-        name: 'Header'
+        name: 'Header',
+        computed: {
+          ...mapGetters([
+            'user',
+            'hasSpace',
+            'mainDirectories',
+            'mainRecords',
+            'mainUrls'
+          ])
+        },
+        created() {
+          this.$store.dispatch('getData')
+        }
     }
 </script>
 
