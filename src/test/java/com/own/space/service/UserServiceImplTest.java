@@ -4,7 +4,6 @@ import com.own.space.data.UserTestData;
 import com.own.space.domain.User;
 import com.own.space.repository.UserRepository;
 
-import com.own.space.repository.dataJpa.UserRepositoryImpl;
 import com.own.space.util.exceptions.NotFoundException;
 
 import org.junit.Test;
@@ -21,7 +20,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 
 import java.util.Date;
 import java.util.List;

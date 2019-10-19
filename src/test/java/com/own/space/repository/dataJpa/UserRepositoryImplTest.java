@@ -1,5 +1,6 @@
 package com.own.space.repository.dataJpa;
 
+import com.own.space.repository.impls.UserRepositoryImpl;
 import com.own.space.util.aspects.RepositoryExceptionInterceptor;
 import com.own.space.data.UserTestData;
 import com.own.space.domain.User;

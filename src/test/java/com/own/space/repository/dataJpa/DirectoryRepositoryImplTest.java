@@ -2,7 +2,9 @@ package com.own.space.repository.dataJpa;
 
 import com.own.space.data.DirectoryTestData;
 import com.own.space.domain.Directory;
-import com.own.space.repository.DirectoryRepository;
+import com.own.space.repository.BlockRepository;
+import com.own.space.repository.BlockRepositoryImpl;
+import com.own.space.repository.impls.DirectoryRepositoryImpl;
 import com.own.space.util.aspects.RepositoryExceptionInterceptor;
 import com.own.space.util.exceptions.InconsistentDataException;
 import org.junit.Test;
@@ -33,13 +35,13 @@ import static org.junit.Assert.assertNull;
 public class DirectoryRepositoryImplTest {
 
     @Autowired
-    private DirectoryRepository repository;
+    private BlockRepository<Directory> repository;
 
     @TestConfiguration
     @EnableAspectJAutoProxy(proxyTargetClass = true)
     public static class DirectoryRepositoryTestConfig{
         @Bean
-        public DirectoryRepository userRepository(CrudDirectoryRepository crud){
+        public BlockRepository<Directory> directoryRepository(CrudDirectoryRepository crud){
             return new DirectoryRepositoryImpl(crud);
         }
         @Bean

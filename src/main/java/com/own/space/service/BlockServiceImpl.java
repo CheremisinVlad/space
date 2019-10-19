@@ -1,8 +1,7 @@
 package com.own.space.service;
 
-import com.own.space.domain.Directory;
-import com.own.space.repository.DirectoryRepository;
-import org.springframework.stereotype.Service;
+import com.own.space.domain.AbstractBaseBlock;
+import com.own.space.repository.BlockRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
@@ -11,26 +10,25 @@ import java.util.List;
 import static com.own.space.service.validation.Validation.checkNew;
 import static com.own.space.service.validation.Validation.checkNotFoundWithId;
 
-@Service
-@Transactional(readOnly = true)
-public class DirectoryServiceImpl implements DirectoryService{
 
-    private DirectoryRepository repository;
+public class BlockServiceImpl<T extends AbstractBaseBlock> implements BlockService<T> {
 
-    public DirectoryServiceImpl(DirectoryRepository repository) {
+    private BlockRepository<T> repository;
+
+    public BlockServiceImpl(BlockRepository<T> repository) {
         this.repository = repository;
     }
 
     @Override
     @Transactional
-    public Directory create(Directory directory) {
+    public T create(T directory) {
         checkNew(directory);
         return repository.save(directory);
     }
 
     @Override
     @Transactional
-    public Directory update(Directory directory) {
+    public T update(T directory) {
         Assert.notNull(directory,"directory must not be null");
         return checkNotFoundWithId(repository.save(directory),directory.getId());
     }
@@ -44,17 +42,17 @@ public class DirectoryServiceImpl implements DirectoryService{
     }
 
     @Override
-    public List<Directory> getAll(int userId) {
+    public List<T> getAll(int userId) {
         return repository.getAll(userId);
     }
 
     @Override
-    public List<Directory> getAllForParent(int parentId) {
+    public List<T> getAllForParent(int parentId) {
         return repository.getAllForParent(parentId);
     }
 
     @Override
-    public List<Directory> getAllForMainWindow(int userId) {
+    public List<T> getAllForMainWindow(int userId) {
         return repository.getAllForMainWindow(userId);
     }
 }

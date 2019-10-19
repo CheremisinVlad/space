@@ -1,7 +1,8 @@
-package com.own.space.repository.dataJpa;
+package com.own.space.repository.impls;
 
 import com.own.space.domain.User;
 import com.own.space.repository.UserRepository;
+import com.own.space.repository.dataJpa.CrudUserRepository;
 import com.own.space.util.encription.PasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;

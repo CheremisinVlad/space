@@ -1,9 +1,8 @@
 package com.own.space.service;
 
 import com.own.space.data.DirectoryTestData;
-import com.own.space.data.UserTestData;
 import com.own.space.domain.Directory;
-import com.own.space.repository.DirectoryRepository;
+import com.own.space.repository.BlockRepository;
 import com.own.space.util.exceptions.NotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.dao.DataAccessException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.test.context.ActiveProfiles;
@@ -31,10 +29,10 @@ import static org.mockito.Mockito.*;
 public class DirectoryServiceImplTest {
 
     @Autowired
-    private DirectoryService service;
+    private BlockService<Directory> service;
 
     @MockBean
-    private DirectoryRepository mockRepository;
+    private BlockRepository<Directory> mockRepository;
 
     @TestConfiguration
     public static class MailSenderConfig{
