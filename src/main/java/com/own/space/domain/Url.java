@@ -12,12 +12,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import java.util.Objects;
 
 import static com.own.space.domain.AbstractBaseEntity.URLS_SEQ;
 
 @Entity
-@Table(name = "url")
+@Table(name = "urls")
 @SequenceGenerator(name = "abstract_gen",sequenceName = "URLS_SEQ",allocationSize = 1,initialValue = URLS_SEQ)
 @Getter
 @Setter

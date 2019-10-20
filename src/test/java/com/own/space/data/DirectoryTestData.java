@@ -1,8 +1,10 @@
 package com.own.space.data;
 
 
+import com.own.space.domain.AbstractBaseBlock;
 import com.own.space.domain.Directory;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
@@ -10,7 +12,8 @@ import static com.own.space.data.UserTestData.USER_VASYA_ID;
 import static com.own.space.data.UserTestData.USER_VLAD_ID;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DirectoryTestData {
+
+public class DirectoryTestData{
     private static int START_SEQ = 10_000;
 
     public static int DIRECTORY1_VLAD_ID = START_SEQ;
@@ -23,7 +26,7 @@ public class DirectoryTestData {
     public static Directory DIRECTORY1_VASYA = new Directory(DIRECTORY1_VASYA_ID ,"patterns",USER_VASYA_ID,0,true);
     public static Directory DIRECTORY2_VASYA = new Directory(DIRECTORY2_VASYA_ID ,"patterns",USER_VASYA_ID,DIRECTORY1_VASYA_ID,false);
 
-    public static void assertMatch(Directory actual,Directory expected){
+    public static void assertMatch(Directory actual, Directory expected){
         assertThat(actual).isEqualToIgnoringGivenFields(expected);
     }
     public static void assertMatch(Iterable<Directory> actual,Directory... expected){
@@ -32,7 +35,6 @@ public class DirectoryTestData {
     public static void assertMatch(Iterable<Directory> actual,Iterable<Directory> expected){
         assertThat(actual).isEqualTo(expected);
     }
-
     public static Directory createDirectoryWithMainTrueAndParentIdNotZero() {
         return new Directory(DIRECTORY1_VLAD_ID,"patterns",USER_VLAD_ID,1,true);
     }
@@ -83,4 +85,5 @@ public class DirectoryTestData {
     public static Directory createNotExisted() {
         return new Directory(1,"not exist",1,0,true);
     }
+
 }
