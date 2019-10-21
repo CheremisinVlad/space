@@ -11,10 +11,12 @@ import java.util.Objects;
 @Setter
 @Getter
 public abstract class AbstractBaseEntity {
-
+    
+    public static final int RECORDS_SEQ = 100;
     public static final int USERS_SEQ = 1_000;
     public static final int DIRECTORIES_SEQ = 10_000;
     public static final int URLS_SEQ = 100_000;
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "abstract_gen")

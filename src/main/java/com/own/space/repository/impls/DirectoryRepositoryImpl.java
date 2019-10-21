@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public class DirectoryRepositoryImpl extends BlockRepositoryImpl<Directory> {
 
-    public DirectoryRepositoryImpl(CrudBlockRepository<Directory> repository) {
+    public DirectoryRepositoryImpl(CrudDirectoryRepository repository) {
         super(repository);
     }
 }
