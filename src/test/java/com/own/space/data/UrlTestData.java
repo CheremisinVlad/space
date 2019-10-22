@@ -11,7 +11,7 @@ import static com.own.space.data.UserTestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UrlTestData {
-    private static int START_SEQ = 100;
+    private static int START_SEQ = 100_000;
 
     public static int URL1_VLAD_ID = START_SEQ;
     public static int URL2_VLAD_ID = START_SEQ+1;

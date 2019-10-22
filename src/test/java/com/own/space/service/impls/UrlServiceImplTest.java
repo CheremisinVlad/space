@@ -34,11 +34,11 @@ public class UrlServiceImplTest {
 
     @Test
     public void create_newUrl_shouldPass() {
-        Url directory = createUrl1ForVladWithoutId();
-        when(mockRepository.save(directory)).thenReturn(URL1_VLAD);
+        Url url = createUrl1ForVladWithoutId();
+        when(mockRepository.save(url)).thenReturn(URL1_VLAD);
         when(mockRepository.getAll(USER_VLAD_ID)).thenReturn(List.of(URL1_VLAD,URL2_VLAD));
 
-        Url created = service.create(directory);
+        Url created = service.create(url);
         assertMatch(URL1_VLAD,created);
         assertMatch(service.getAll(USER_VLAD_ID),URL1_VLAD,URL2_VLAD);
     }
@@ -65,7 +65,7 @@ public class UrlServiceImplTest {
     }
 
     @Test
-    public void delete_existingDirectory_shouldPass() {
+    public void delete_existingUrl_shouldPass() {
         when(mockRepository.delete(URL1_VLAD_ID)).thenReturn(true);
 
         boolean isDeleted = service.delete(URL1_VLAD_ID);
@@ -84,27 +84,27 @@ public class UrlServiceImplTest {
     public void getAll_existingUrl_shouldPass() {
         when(mockRepository.getAll(USER_VLAD_ID)).thenReturn(List.of(URL1_VLAD,URL2_VLAD));
 
-        List<Url> directories = service.getAll(USER_VLAD_ID);
+        List<Url> urls = service.getAll(USER_VLAD_ID);
 
-        assertMatch(directories,URL1_VLAD,URL2_VLAD);
+        assertMatch(urls,URL1_VLAD,URL2_VLAD);
     }
 
     @Test
-    public void getAllForParent_existingUser_shouldPass() {
+    public void getAllForParent_existingUrl_shouldPass() {
         when(mockRepository.getAllForParent(URL1_VLAD_ID)).thenReturn(List.of(URL2_VLAD));
 
-        List<Url> directories = service.getAllForParent(URL1_VLAD_ID);
+        List<Url> urls = service.getAllForParent(URL1_VLAD_ID);
 
-        assertMatch(directories,URL2_VLAD);
+        assertMatch(urls,URL2_VLAD);
     }
 
     @Test
-    public void getAllForMainWindow_existingUser_shouldPass() {
+    public void getAllForMainWindow_existingUrl_shouldPass() {
         when(mockRepository.getAllForMainWindow(USER_VLAD_ID)).thenReturn(List.of(URL2_VLAD));
 
-        List<Url> directories = service.getAllForMainWindow(USER_VLAD_ID);
+        List<Url> urls = service.getAllForMainWindow(USER_VLAD_ID);
 
-        assertMatch(directories,URL2_VLAD);
+        assertMatch(urls,URL2_VLAD);
     }
 
 }

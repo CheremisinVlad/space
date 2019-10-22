@@ -10,6 +10,15 @@ import static com.own.space.data.UserTestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RecordTestData {
+
+    private static int START_SEQ = 100;
+
+    public static int RECORD1_VLAD_ID = START_SEQ;
+    public static int RECORD2_VLAD_ID = START_SEQ+1;
+
+    public static final Record RECORD1_VLAD = new Record(RECORD1_VLAD_ID,USER_VLAD_ID,DIRECTORY1_VLAD_ID,false,"test","test content","test is everything for anyone");
+    public static final Record RECORD2_VLAD = new Record(RECORD2_VLAD_ID ,USER_VLAD_ID,0,true,"main record","test content","test is everything for anyone");
+
     public static void assertMatch(Record actual, Record expected){
         assertThat(actual).isEqualToIgnoringGivenFields(expected);
     }
@@ -82,5 +91,13 @@ public class RecordTestData {
 
     public static Record createRecord2ForVladWithoutId() {
         return new Record(USER_VLAD_ID,DIRECTORY1_VLAD_ID,false,"test","test content","tests is important");
+    }
+
+    public static Record updateRecord1ForVlad() {
+        return new Record(RECORD1_VLAD_ID,USER_VLAD_ID,DIRECTORY1_VLAD_ID,false,"test","test update","test is everything for anyone");
+    }
+
+    public static Record createNotExisted() {
+        return new Record(1,DIRECTORY1_VLAD_ID,false,"test","test update","test is everything for anyone");
     }
 }
