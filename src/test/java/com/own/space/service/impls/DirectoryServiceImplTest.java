@@ -84,7 +84,7 @@ public class DirectoryServiceImplTest {
     }
 
     @Test
-    public void getAll_existingUser_shouldPass() {
+    public void getAll_existingDirectory_shouldPass() {
         when(mockRepository.getAll(USER_VLAD_ID)).thenReturn(List.of(DIRECTORY1_VLAD,DIRECTORY2_VLAD));
 
         List<Directory> directories = service.getAll(USER_VLAD_ID);
@@ -93,7 +93,7 @@ public class DirectoryServiceImplTest {
     }
 
     @Test
-    public void getAllForParent_existingUser_shouldPass() {
+    public void getAllForParent_existingDirectory_shouldPass() {
         when(mockRepository.getAllForParent(DIRECTORY1_VLAD_ID)).thenReturn(List.of(DIRECTORY2_VLAD));
 
         List<Directory> directories = service.getAllForParent(DIRECTORY1_VLAD_ID);
@@ -102,7 +102,7 @@ public class DirectoryServiceImplTest {
     }
 
     @Test
-    public void getAllForMainWindow_existingUser_shouldPass() {
+    public void getAllForMainWindow_existingDirectory_shouldPass() {
         when(mockRepository.getAllForMainWindow(USER_VLAD_ID)).thenReturn(List.of(DIRECTORY1_VLAD));
 
         List<Directory> directories = service.getAllForMainWindow(USER_VLAD_ID);

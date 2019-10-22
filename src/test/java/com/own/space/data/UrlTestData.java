@@ -11,6 +11,13 @@ import static com.own.space.data.UserTestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UrlTestData {
+    private static int START_SEQ = 100;
+
+    public static int URL1_VLAD_ID = START_SEQ;
+    public static int URL2_VLAD_ID = START_SEQ+1;
+
+    public static final Url URL1_VLAD = new Url(URL1_VLAD_ID,USER_VLAD_ID,DIRECTORY1_VLAD_ID,false,"https://github.com","it's null url");
+    public static final Url URL2_VLAD = new Url(URL2_VLAD_ID ,USER_VLAD_ID,0,true,"https://github.com","it's null url");
 
 
     public static void assertMatch(Url actual, Url expected){
@@ -71,6 +78,11 @@ public class UrlTestData {
     }
 
 
+    public static Url updateUrl1ForVlad() {
+        return new Url(URL1_VLAD_ID,USER_VLAD_ID,DIRECTORY1_VLAD_ID,false,"https://github.com","it's updated");
+    }
 
-
+    public static Url createNotExisted() {
+        return new Url(1,DIRECTORY1_VLAD_ID,false,"https://github.com","alpha");
+    }
 }
