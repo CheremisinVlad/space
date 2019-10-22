@@ -1,7 +1,8 @@
-package com.own.space.service;
+package com.own.space.service.impls;
 
 import com.own.space.domain.AuthUser;
 import com.own.space.domain.User;
+import com.own.space.service.UserService;
 import com.own.space.util.events.user.UserCreatedEvent;
 import com.own.space.util.events.EventPublisher;
 import com.own.space.util.mail.EmailMessage;
@@ -19,7 +20,7 @@ import static com.own.space.service.validation.Validation.*;
 
 @Service
 @Transactional(readOnly = true)
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 
     private UserRepository repository;

@@ -1,8 +1,9 @@
-package com.own.space.service;
+package com.own.space.service.impls;
 
 import com.own.space.data.DirectoryTestData;
 import com.own.space.domain.Directory;
 import com.own.space.repository.BlockRepository;
+import com.own.space.service.BlockService;
 import com.own.space.util.exceptions.NotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +26,7 @@ import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
-@SpringBootTest
+@SpringBootTest(classes = TestServiceConfig.class)
 public class DirectoryServiceImplTest {
 
     @Autowired
@@ -33,15 +34,6 @@ public class DirectoryServiceImplTest {
 
     @MockBean
     private BlockRepository<Directory> mockRepository;
-
-    @TestConfiguration
-    public static class MailSenderConfig{
-        @Bean
-        public JavaMailSender javaMailSender(){
-            return new JavaMailSenderImpl();
-        }
-
-    }
 
     @Test
     public void create_newDirectory_shouldPass() {

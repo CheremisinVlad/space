@@ -13,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
@@ -32,23 +33,12 @@ import static org.junit.Assert.assertNull;
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
 @Sql(scripts = "classpath:db/h2/createUrlDb.sql",config = @SqlConfig(encoding = "UTF-8"))
+@Import(TestRepositoryConfig.class)
 public class UrlRepositoryImplTest{
 
     @Autowired
     private BlockRepository<Url> repository;
 
-    @TestConfiguration
-    @EnableAspectJAutoProxy(proxyTargetClass = true)
-    public static class DirectoryRepositoryTestConfig{
-        @Bean
-        public BlockRepository<Url> directoryRepository(CrudUrlRepository crud){
-            return new UrlRepositoryImpl(crud);
-        }
-        @Bean
-        public RepositoryExceptionInterceptor repositoryExceptionInterceptor(){
-            return new RepositoryExceptionInterceptor();
-        }
-    }
 
     @Test(expected = InconsistentDataException.class)
     public void save_withNullValue_shouldFail(){

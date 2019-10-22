@@ -1,9 +1,10 @@
-package com.own.space.service;
+package com.own.space.service.impls;
 
 import com.own.space.data.UserTestData;
 import com.own.space.domain.User;
 import com.own.space.repository.UserRepository;
 
+import com.own.space.service.UserService;
 import com.own.space.util.exceptions.NotFoundException;
 
 import org.junit.Test;
@@ -30,7 +31,7 @@ import static org.mockito.Mockito.*;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = TestServiceConfig.class)
 @ActiveProfiles(value = "test")
 public class UserServiceImplTest {
 
@@ -41,14 +42,6 @@ public class UserServiceImplTest {
     @MockBean
     private UserRepository mockRepository;
 
-    @TestConfiguration
-    public static class MailSenderConfig{
-        @Bean
-        public JavaMailSender javaMailSender(){
-            return new JavaMailSenderImpl();
-        }
-
-    }
 
     @Test
     public void create_newUser_shouldPass() {

@@ -8,10 +8,12 @@ import com.own.space.util.exceptions.InconsistentDataException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
@@ -31,23 +33,12 @@ import static org.junit.Assert.assertNull;
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
 @Sql(scripts = "classpath:db/h2/createDirectoryDb.sql",config = @SqlConfig(encoding = "UTF-8"))
+@Import(TestRepositoryConfig.class)
 public class DirectoryRepositoryImplTest {
 
     @Autowired
     private BlockRepository<Directory> repository;
 
-    @TestConfiguration
-    @EnableAspectJAutoProxy(proxyTargetClass = true)
-    public static class DirectoryRepositoryTestConfig{
-        @Bean
-        public BlockRepository<Directory> directoryRepository(CrudDirectoryRepository crud){
-            return new DirectoryRepositoryImpl(crud);
-        }
-        @Bean
-        public RepositoryExceptionInterceptor repositoryExceptionInterceptor(){
-            return new RepositoryExceptionInterceptor();
-        }
-    }
 
     @Test(expected = InconsistentDataException.class)
     public void save_withNullName_shouldFail(){
