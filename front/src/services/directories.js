@@ -12,5 +12,16 @@ export default {
           reject(errorParser.parse(error))
         })
     })
+  },
+  delete(directory){
+    return new Promise((resolve, reject) => {
+      axios.delete('/directory', directory)
+        .then(({data}) => {
+          resolve(data)
+        })
+        .catch((error) => {
+          reject(errorParser.parse(error))
+        })
+    })
   }
 }

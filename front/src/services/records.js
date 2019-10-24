@@ -12,5 +12,16 @@ export default {
           reject(errorParser.parse(error))
         })
     })
+  },
+  delete(record){
+    return new Promise((resolve, reject) => {
+      axios.delete('/record', record)
+        .then(({data}) => {
+          resolve(data)
+        })
+        .catch((error) => {
+          reject(errorParser.parse(error))
+        })
+    })
   }
 }
