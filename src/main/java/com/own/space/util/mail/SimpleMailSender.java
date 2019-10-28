@@ -53,7 +53,7 @@ public class SimpleMailSender implements MailSender {
             }
             return FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
         } catch (Exception e) {
-            LOG.error("Failed to create message body from template " + templateName, e);
+            LOG.error("Failed to save message body from template " + templateName, e);
             return null;
         }
     }

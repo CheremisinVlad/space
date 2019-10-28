@@ -2,11 +2,13 @@ package com.own.space.web.controller;
 
 import com.own.space.config.SecurityConfig;
 import com.own.space.service.UserService;
+import com.own.space.service.impls.UserServiceImpl;
 import com.own.space.util.UserUtil;
 import com.own.space.web.payload.UserTo;
 import com.own.space.web.util.JsonUtils;
 import com.own.space.web.util.exceptions.EmailExistsException;
 import com.own.space.web.util.exceptions.UsernameExistException;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +22,13 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest()
+@WebMvcTest
 @ActiveProfiles("test")
 @ContextConfiguration(classes = {SecurityConfig.class,RegistrationController.class})
 public class RegistrationControllerTest {
@@ -36,6 +39,7 @@ public class RegistrationControllerTest {
 
     @MockBean
     private UserService mockService;
+
 
     @Test
     public void register_blankUserTo_shouldFailAndReturn400() throws Exception{
@@ -80,18 +84,18 @@ public class RegistrationControllerTest {
     }
     @Test
     public void register_existedEmail_shouldSucceedAndReturn201() throws Exception{
-        UserTo existed = new UserTo();
-        existed.setUsername("vlad");
-        existed.setEmail("vlad@mail.com");
-        existed.setPassword("password");
+        UserTo newUser = new UserTo();
+        newUser.setUsername("vlad");
+        newUser.setEmail("vlad@mail.com");
+        newUser.setPassword("password");
 
-        doReturn(UserUtil.transferUserTransferObjectToUser(existed)).when(mockService)
-                .create(UserUtil.transferUserTransferObjectToUser(existed));
+        doReturn(UserUtil.transferUserTransferObjectToUser(newUser)).when(mockService)
+                .create(UserUtil.transferUserTransferObjectToUser(newUser));
 
         mvc.perform(
                 post(URL)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonUtils.jsonFromObj(existed)))
+                        .content(JsonUtils.jsonFromObj(newUser)))
                 .andExpect(status().is(201));
     }
 

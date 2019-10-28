@@ -1,7 +1,6 @@
 package com.own.space.util.encription;
 
 import com.own.space.util.exceptions.InconsistentDataException;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 

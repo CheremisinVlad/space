@@ -21,7 +21,7 @@ public class BlockServiceImpl<T extends AbstractBaseBlock> implements BlockServi
 
     @Override
     @Transactional
-    public T create(T directory) {
+    public T save(T directory) {
         checkNew(directory);
         return repository.save(directory);
     }

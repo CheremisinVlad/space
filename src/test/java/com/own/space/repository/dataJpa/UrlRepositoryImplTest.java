@@ -75,21 +75,6 @@ public class UrlRepositoryImplTest{
         Url invalid = createUrlWithNullParentId();
         repository.save(invalid);
     }
-    @Test(expected = InconsistentDataException.class)
-    public void save_withNullIsMainFlag_shouldFail(){
-        Url invalid = createUrlWithNullIsMainFlag();
-        repository.save(invalid);
-    }
-    @Test(expected = InconsistentDataException.class)
-    public void save_withTrueMainFlagAndParentIdNotZero_shouldFail(){
-        Url invalid = createUrlWithTrueMainFlagAndParentIdNotZero();
-        repository.save(invalid);
-    }
-    @Test(expected = InconsistentDataException.class)
-    public void save_withFalseMainFlagAndParentIdZero_shouldFail(){
-        Url invalid = createUrlWithFalseMainFlagAndParentIdZero();
-        repository.save(invalid);
-    }
     @Test
     public void get_withNotExistedId_shouldReturnNull(){
         Url nullRepository = repository.getById(1);

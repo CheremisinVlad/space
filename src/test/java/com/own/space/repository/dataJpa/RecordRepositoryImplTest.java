@@ -94,21 +94,6 @@ public class RecordRepositoryImplTest {
         Record invalid = createRecordWithNullParentId();
         repository.save(invalid);
     }
-    @Test(expected = InconsistentDataException.class)
-    public void save_withNullIsMainFlag_shouldFail(){
-        Record invalid = createRecordWithNullIsMainFlag();
-        repository.save(invalid);
-    }
-    @Test(expected = InconsistentDataException.class)
-    public void save_withTrueMainFlagAndParentIdNotZero_shouldFail(){
-        Record invalid = createRecordWithTrueMainFlagAndParentIdNotZero();
-        repository.save(invalid);
-    }
-    @Test(expected = InconsistentDataException.class)
-    public void save_withFalseMainFlagAndParentIdZero_shouldFail(){
-        Record invalid = createRecordWithFalseMainFlagAndParentIdZero();
-        repository.save(invalid);
-    }
     @Test
     public void get_withNotExistedId_shouldReturnNull(){
         Record nullRecord = repository.getById(1);

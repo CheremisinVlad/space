@@ -37,17 +37,17 @@ public class Record extends AbstractBaseBlock {
     public Record() {
     }
 
-    public Record(@NotNull Integer userId, @NotNull Integer parentId, @NotNull Boolean isMain, @NotNull @Size(min = 2, max = 50) String name,
+    public Record(@NotNull Integer userId, @NotNull Integer parentId, @NotNull @Size(min = 2, max = 50) String name,
                   @NotNull @Size(min = 2, max = 200) String description, @NotNull @Size(min = 2) String content) {
-        super(userId, parentId, isMain);
+        super(userId, parentId);
         this.name = name;
         this.description = description;
         this.content = content;
     }
 
-    public Record(int id, @NotNull Integer userId, @NotNull Integer parentId, @NotNull Boolean isMain, @NotNull @Size(min = 2, max = 50) String name,
+    public Record(int id, @NotNull Integer userId, @NotNull Integer parentId, @NotNull @Size(min = 2, max = 50) String name,
                   @NotNull @Size(min = 2, max = 200) String description, @NotNull @Size(min = 2) String content) {
-        super(id, userId, parentId, isMain);
+        super(id, userId, parentId);
         this.name = name;
         this.description = description;
         this.content = content;

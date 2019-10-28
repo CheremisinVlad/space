@@ -9,11 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -41,7 +37,7 @@ public class DirectoryServiceImplTest {
         when(mockRepository.save(directory)).thenReturn(DIRECTORY1_VLAD);
         when(mockRepository.getAll(USER_VLAD_ID)).thenReturn(List.of(DIRECTORY1_VLAD,DIRECTORY2_VLAD));
 
-        Directory created = service.create(directory);
+        Directory created = service.save(directory);
         assertMatch(DIRECTORY1_VLAD,created);
         assertMatch(service.getAll(USER_VLAD_ID),DIRECTORY1_VLAD,DIRECTORY2_VLAD);
     }

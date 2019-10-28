@@ -25,6 +25,6 @@ public interface CrudBlockRepository<T extends AbstractBaseBlock> extends JpaRep
     @Modifying
     int delete(@Param("id")int id);
 
-    @Query("SELECT d FROM #{#entityName} d WHERE d.userId=:userId AND d.isMain=:isMain")
-    List<T> getAllForMainWindow(@Param("userId")int userId,@Param("isMain")boolean isMain);
+    @Query("SELECT d FROM #{#entityName} d WHERE d.userId=:userId AND d.parentId=0")
+    List<T> getAllForMainWindow(@Param("userId")int userId);
 }

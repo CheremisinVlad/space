@@ -65,21 +65,6 @@ public class DirectoryRepositoryImplTest {
         Directory invalid = createDirectoryWithNullParentId();
         repository.save(invalid);
     }
-    @Test(expected = InconsistentDataException.class)
-    public void save_withNullIsMainFlag_shouldFail(){
-        Directory invalid = createDirectoryWithNullIsMainFlag();
-        repository.save(invalid);
-    }
-    @Test(expected = InconsistentDataException.class)
-    public void save_withTrueMainFlagAndParentIdNotZero_shouldFail(){
-        Directory invalid = createDirectoryWithTrueMainFlagAndParentIdNotZero();
-        repository.save(invalid);
-    }
-    @Test(expected = InconsistentDataException.class)
-    public void save_withFalseMainFlagAndParentIdZero_shouldFail(){
-        Directory invalid = createDirectoryWithFalseMainFlagAndParentIdZero();
-        repository.save(invalid);
-    }
     @Test
     public void get_withNotExistedId_shouldReturnNull(){
         Directory nullRepository = repository.getById(1);

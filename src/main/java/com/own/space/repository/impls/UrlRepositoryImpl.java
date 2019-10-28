@@ -10,6 +10,5 @@ public class UrlRepositoryImpl extends BlockRepositoryImpl<Url> {
 
     public UrlRepositoryImpl(CrudBlockRepository<Url> url) {
         super(url);
-
     }
 }

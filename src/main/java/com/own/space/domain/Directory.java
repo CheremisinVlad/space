@@ -26,15 +26,13 @@ public class Directory extends AbstractBaseBlock{
     public Directory() {
     }
 
-    public Directory(int id, @Size(min = 2, max = 30) @NotNull String name, @NotNull Integer userId, @NotNull Integer parentId,
-                     @NotNull Boolean isMain) {
-        super(id, userId, parentId, isMain);
+    public Directory(int id, @Size(min = 2, max = 30) @NotNull String name, @NotNull Integer userId, @NotNull Integer parentId) {
+        super(id, userId, parentId);
         this.name = name;
     }
 
-    public Directory( @Size(min = 2, max = 30) @NotNull String name,@NotNull Integer userId, @NotNull Integer parentId,
-                     @NotNull Boolean isMain) {
-        super(userId, parentId, isMain);
+    public Directory( @Size(min = 2, max = 30) @NotNull String name,@NotNull Integer userId, @NotNull Integer parentId) {
+        super(userId, parentId);
         this.name = name;
     }
 }

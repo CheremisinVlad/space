@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS urls;
 DROP TABLE IF EXISTS directories;
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS records;
+DROP TABLE IF EXISTS users;
 DROP SEQUENCE IF EXISTS users_seq;
 DROP SEQUENCE IF EXISTS directories_seq;
 DROP SEQUENCE IF EXISTS urls_seq;
@@ -26,7 +26,6 @@ CREATE TABLE directories(
   user_id             INTEGER               NOT NULL,
   name                VARCHAR               NOT NULL,
   parent_id           INTEGER                       ,
-  is_main             BOOLEAN               NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 CREATE INDEX directories_user_id_idx ON directories (user_id);
@@ -37,7 +36,6 @@ CREATE TABLE urls(
   url                 VARCHAR                   ,
   description         VARCHAR           NOT NULL,
   parent_id           INTEGER           NOT NULL,
-  is_main             BOOLEAN           NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
@@ -48,7 +46,6 @@ CREATE TABLE records(
   description         VARCHAR               NOT NULL,
   content             VARCHAR               NOT NULL,
   parent_id           INTEGER                       ,
-  is_main             BOOLEAN               NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 CREATE INDEX records_user_id_idx ON records (user_id);

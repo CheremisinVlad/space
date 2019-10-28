@@ -7,7 +7,6 @@ import com.own.space.service.BlockService;
 import com.own.space.util.exceptions.NotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -38,7 +37,7 @@ public class UrlServiceImplTest {
         when(mockRepository.save(url)).thenReturn(URL1_VLAD);
         when(mockRepository.getAll(USER_VLAD_ID)).thenReturn(List.of(URL1_VLAD,URL2_VLAD));
 
-        Url created = service.create(url);
+        Url created = service.save(url);
         assertMatch(URL1_VLAD,created);
         assertMatch(service.getAll(USER_VLAD_ID),URL1_VLAD,URL2_VLAD);
     }

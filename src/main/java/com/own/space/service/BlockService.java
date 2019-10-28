@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BlockService<T extends AbstractBaseBlock> {
 
-    T create(T block);
+    T save(T block);
 
     T update(T block);
 

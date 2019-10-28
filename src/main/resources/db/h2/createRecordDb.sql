@@ -12,6 +12,5 @@ CREATE TABLE records
   description      VARCHAR(255)            NOT NULL,
   content          VARCHAR(255)            NOT NULL,
   user_id          bigint                  NOT NULL,
-  parent_id        bigint                  NOT NULL,
-  is_main          BOOLEAN                 NOT NULL
+  parent_id        bigint                  NOT NULL
 );

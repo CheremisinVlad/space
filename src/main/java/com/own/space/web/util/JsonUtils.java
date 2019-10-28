@@ -27,7 +27,7 @@ public class JsonUtils {
         try {
             return mapper.readValue(json,clazz);
         } catch (IOException e) {
-            log.error("Failed to create object from json", e);
+            log.error("Failed to save object from json", e);
             return null;
         }
     }

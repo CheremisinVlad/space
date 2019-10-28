@@ -1,9 +1,7 @@
 package com.own.space.repository;
 
 import com.own.space.domain.AbstractBaseBlock;
-import com.own.space.repository.validation.RepositoryValidationUtil;
 import com.own.space.repository.dataJpa.CrudBlockRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -23,7 +21,6 @@ public abstract class BlockRepositoryImpl<T extends AbstractBaseBlock> implement
 
     @Override
     public T save(T block) {
-        RepositoryValidationUtil.validate(block);
         return repository.save(block);
     }
 
@@ -44,6 +41,6 @@ public abstract class BlockRepositoryImpl<T extends AbstractBaseBlock> implement
 
     @Override
     public List<T> getAllForMainWindow(int userId) {
-        return repository.getAllForMainWindow(userId,true);
+        return repository.getAllForMainWindow(userId);
     }
 }

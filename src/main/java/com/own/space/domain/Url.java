@@ -35,16 +35,16 @@ public class Url extends AbstractBaseBlock {
     public Url() {
     }
 
-    public Url(int id, @NotNull Integer userId, @NotNull Integer parentId, @NotNull Boolean isMain,
+    public Url(int id, @NotNull Integer userId, @NotNull Integer parentId,
                @NotNull @URL String url, @NotNull @Size(min = 2, max = 50) String description) {
-        super(id, userId, parentId, isMain);
+        super(id, userId, parentId);
         this.url = url;
         this.description = description;
     }
 
-    public Url(@NotNull Integer userId, @NotNull Integer parentId, @NotNull Boolean isMain,
+    public Url(@NotNull Integer userId, @NotNull Integer parentId,
                @NotNull @URL String url, @NotNull @Size(min = 2, max = 50) String description) {
-        super(userId, parentId, isMain);
+        super(userId, parentId);
         this.url = url;
         this.description = description;
     }

@@ -21,24 +21,18 @@ public abstract class AbstractBaseBlock extends AbstractBaseEntity{
     @NotNull
     private Integer parentId;
 
-    @Column(name = "is_main")
-    @NotNull
-    private Boolean isMain;
-
     protected AbstractBaseBlock() {
     }
 
-    protected AbstractBaseBlock(@NotNull Integer userId, @NotNull Integer parentId, @NotNull Boolean isMain) {
+    protected AbstractBaseBlock(@NotNull Integer userId, @NotNull Integer parentId) {
         this.userId = userId;
         this.parentId = parentId;
-        this.isMain = isMain;
     }
 
-    protected  AbstractBaseBlock(int id, @NotNull Integer userId, @NotNull Integer parentId, @NotNull Boolean isMain) {
+    protected  AbstractBaseBlock(int id, @NotNull Integer userId, @NotNull Integer parentId) {
         super(id);
         this.userId = userId;
         this.parentId = parentId;
-        this.isMain = isMain;
     }
 
     @Override
@@ -48,13 +42,12 @@ public abstract class AbstractBaseBlock extends AbstractBaseEntity{
         if (!super.equals(o)) return false;
         AbstractBaseBlock that = (AbstractBaseBlock) o;
         return Objects.equals(userId, that.userId) &&
-                Objects.equals(parentId, that.parentId) &&
-                Objects.equals(isMain, that.isMain);
+                Objects.equals(parentId, that.parentId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), userId, parentId, isMain);
+        return Objects.hash(super.hashCode(), userId, parentId);
     }
 
     @Override
@@ -62,7 +55,6 @@ public abstract class AbstractBaseBlock extends AbstractBaseEntity{
         return "AbstractBaseBlock{" +
                 "userId=" + userId +
                 ", parentId=" + parentId +
-                ", isMain=" + isMain +
                 ", id=" + id +
                 '}';
     }

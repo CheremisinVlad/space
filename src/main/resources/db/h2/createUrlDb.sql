@@ -11,6 +11,5 @@ CREATE TABLE urls
   url             VARCHAR(255)            NOT NULL,
   description     VARCHAR(255)            NOT NULL,
   user_id         bigint                  NOT NULL,
-  parent_id       bigint                  NOT NULL,
-  is_main         BOOLEAN                 NOT NULL
+  parent_id       bigint                  NOT NULL
 );

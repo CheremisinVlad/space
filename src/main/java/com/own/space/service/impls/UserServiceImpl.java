@@ -9,6 +9,7 @@ import com.own.space.util.mail.EmailMessage;
 import com.own.space.util.mail.MailSender;
 import com.own.space.repository.UserRepository;
 import com.own.space.util.exceptions.NotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -29,10 +30,13 @@ public class UserServiceImpl implements UserService {
 
     private MailSender sender;
 
+    @Autowired
     public UserServiceImpl(UserRepository repository, EventPublisher publisher, MailSender sender) {
         this.repository = repository;
         this.publisher = publisher;
         this.sender = sender;
+    }
+    public UserServiceImpl() {
     }
 
     @Override

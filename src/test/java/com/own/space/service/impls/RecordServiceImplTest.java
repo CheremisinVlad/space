@@ -37,7 +37,7 @@ public class RecordServiceImplTest {
         when(mockRepository.save(record)).thenReturn(RECORD1_VLAD);
         when(mockRepository.getAll(USER_VLAD_ID)).thenReturn(List.of(RECORD1_VLAD,RECORD2_VLAD));
 
-        Record created = service.create(record);
+        Record created = service.save(record);
         assertMatch(RECORD1_VLAD,created);
         assertMatch(service.getAll(USER_VLAD_ID),RECORD1_VLAD,RECORD2_VLAD);
     }
