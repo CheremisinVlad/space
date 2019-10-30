@@ -19,18 +19,23 @@ public class BlockServiceImpl<T extends AbstractBaseBlock> implements BlockServi
         this.repository = repository;
     }
 
-    @Override
-    @Transactional
-    public T save(T directory) {
-        checkNew(directory);
-        return repository.save(directory);
+    public T get(int id){
+        Assert.notNull(id,"id must not be null");
+        return repository.getById(id);
     }
 
     @Override
     @Transactional
-    public T update(T directory) {
-        Assert.notNull(directory,"directory must not be null");
-        return checkNotFoundWithId(repository.save(directory),directory.getId());
+    public T save(T block) {
+        checkNew(block);
+        return repository.save(block);
+    }
+
+    @Override
+    @Transactional
+    public T update(T block) {
+        Assert.notNull(block,"block must not be null");
+        return checkNotFoundWithId(repository.save(block),block.getId());
     }
 
     @Override
@@ -41,18 +46,20 @@ public class BlockServiceImpl<T extends AbstractBaseBlock> implements BlockServi
         return true;
     }
 
+
+
     @Override
     public List<T> getAll(int userId) {
         return repository.getAll(userId);
     }
 
     @Override
-    public List<T> getAllForParent(int parentId) {
-        return repository.getAllForParent(parentId);
+    public List<T> getAllParent(int parentId) {
+        return repository.getAllParent(parentId);
     }
 
     @Override
-    public List<T> getAllForMainWindow(int userId) {
-        return repository.getAllForMainWindow(userId);
+    public List<T> getAllMain(int userId) {
+        return repository.getAllMain(userId);
     }
 }

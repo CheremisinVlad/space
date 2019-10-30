@@ -35,12 +35,12 @@ public abstract class BlockRepositoryImpl<T extends AbstractBaseBlock> implement
     }
 
     @Override
-    public List<T> getAllForParent(int parentId) {
-        return repository.getAllForParent(parentId);
+    public List<T> getAllParent(int parentId) {
+        return repository.getAllParent(parentId);
     }
 
     @Override
-    public List<T> getAllForMainWindow(int userId) {
-        return repository.getAllForMainWindow(userId);
+    public List<T> getAllMain(int userId) {
+        return repository.getAllMain(userId);
     }
 }

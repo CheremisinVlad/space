@@ -90,19 +90,34 @@ public class DirectoryServiceImplTest {
 
     @Test
     public void getAllForParent_existingDirectory_shouldPass() {
-        when(mockRepository.getAllForParent(DIRECTORY1_VLAD_ID)).thenReturn(List.of(DIRECTORY2_VLAD));
+        when(mockRepository.getAllParent(DIRECTORY1_VLAD_ID)).thenReturn(List.of(DIRECTORY2_VLAD));
 
-        List<Directory> directories = service.getAllForParent(DIRECTORY1_VLAD_ID);
+        List<Directory> directories = service.getAllParent(DIRECTORY1_VLAD_ID);
 
         assertMatch(directories,DIRECTORY2_VLAD);
     }
 
     @Test
     public void getAllForMainWindow_existingDirectory_shouldPass() {
-        when(mockRepository.getAllForMainWindow(USER_VLAD_ID)).thenReturn(List.of(DIRECTORY1_VLAD));
+        when(mockRepository.getAllMain(USER_VLAD_ID)).thenReturn(List.of(DIRECTORY1_VLAD));
 
-        List<Directory> directories = service.getAllForMainWindow(USER_VLAD_ID);
+        List<Directory> directories = service.getAllMain(USER_VLAD_ID);
 
         assertMatch(directories,DIRECTORY1_VLAD);
+    }
+
+    @Test
+    public void getById_existingDirectory_shouldPass(){
+        when(mockRepository.getById(DIRECTORY1_VLAD_ID)).thenReturn(DIRECTORY1_VLAD);
+
+        Directory directory = service.get(DIRECTORY1_VLAD_ID);
+
+        assertMatch(directory,DIRECTORY1_VLAD);
+    }
+    @Test(expected = NotFoundException.class)
+    public void getById_notExistingDirectory_shouldPass(){
+        when(mockRepository.getById(1)).thenThrow(NotFoundException.class);
+
+        service.get(1);
     }
 }

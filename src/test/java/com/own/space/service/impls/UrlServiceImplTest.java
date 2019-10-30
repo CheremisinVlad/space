@@ -90,20 +90,35 @@ public class UrlServiceImplTest {
 
     @Test
     public void getAllForParent_existingUrl_shouldPass() {
-        when(mockRepository.getAllForParent(URL1_VLAD_ID)).thenReturn(List.of(URL2_VLAD));
+        when(mockRepository.getAllParent(URL1_VLAD_ID)).thenReturn(List.of(URL2_VLAD));
 
-        List<Url> urls = service.getAllForParent(URL1_VLAD_ID);
+        List<Url> urls = service.getAllParent(URL1_VLAD_ID);
 
         assertMatch(urls,URL2_VLAD);
     }
 
     @Test
     public void getAllForMainWindow_existingUrl_shouldPass() {
-        when(mockRepository.getAllForMainWindow(USER_VLAD_ID)).thenReturn(List.of(URL2_VLAD));
+        when(mockRepository.getAllMain(USER_VLAD_ID)).thenReturn(List.of(URL2_VLAD));
 
-        List<Url> urls = service.getAllForMainWindow(USER_VLAD_ID);
+        List<Url> urls = service.getAllMain(USER_VLAD_ID);
 
         assertMatch(urls,URL2_VLAD);
+    }
+
+    @Test
+    public void getById_existingDirectory_shouldPass(){
+        when(mockRepository.getById(URL1_VLAD_ID)).thenReturn(URL1_VLAD);
+
+        Url url= service.get(URL1_VLAD_ID);
+
+        assertMatch(url,URL1_VLAD);
+    }
+    @Test(expected = NotFoundException.class)
+    public void getById_notExistingDirectory_shouldPass(){
+        when(mockRepository.getById(1)).thenThrow(NotFoundException.class);
+
+        service.get(1);
     }
 
 }

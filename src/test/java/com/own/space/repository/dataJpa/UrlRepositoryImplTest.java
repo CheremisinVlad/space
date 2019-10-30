@@ -3,16 +3,11 @@ package com.own.space.repository.dataJpa;
 import com.own.space.data.UrlTestData;
 import com.own.space.domain.Url;
 import com.own.space.repository.BlockRepository;
-import com.own.space.repository.impls.UrlRepositoryImpl;
-import com.own.space.util.aspects.RepositoryExceptionInterceptor;
 import com.own.space.util.exceptions.InconsistentDataException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
@@ -105,13 +100,13 @@ public class UrlRepositoryImplTest{
     public void getAll_withCorrectUserIdForMainWindow_shouldSucceed(){
         Url save1 = repository.save(createUrl1ForVladWithoutId());
         repository.save(createUrl2ForVladWithoutId());
-        List<Url> all = repository.getAllForMainWindow(USER_VLAD_ID);
+        List<Url> all = repository.getAllMain(USER_VLAD_ID);
         assertMatch(all,save1);
     }
     @Test
     public void getAll_withCorrectParentId_shouldSucceed(){
         Url save2 = repository.save(createUrl2ForVladWithoutId());
-        List<Url> all = repository.getAllForParent(save2.getParentId());
+        List<Url> all = repository.getAllParent(save2.getParentId());
         assertMatch(all,save2);
     }
     @Test

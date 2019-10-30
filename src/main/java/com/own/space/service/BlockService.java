@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface BlockService<T extends AbstractBaseBlock> {
 
+    T get(int id);
+
     T save(T block);
 
     T update(T block);
@@ -15,7 +17,7 @@ public interface BlockService<T extends AbstractBaseBlock> {
 
     List<T> getAll(int userId);
 
-    List<T> getAllForParent(int parentId);
+    List<T> getAllParent(int parentId);
 
-    List<T> getAllForMainWindow(int userId);
+    List<T> getAllMain(int userId);
 }

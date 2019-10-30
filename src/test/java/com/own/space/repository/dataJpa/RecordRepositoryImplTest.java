@@ -1,18 +1,12 @@
 package com.own.space.repository.dataJpa;
 
-import com.own.space.data.RecordTestData;
 import com.own.space.domain.Record;
 import com.own.space.repository.BlockRepository;
-import com.own.space.repository.impls.RecordRepositoryImpl;
-import com.own.space.util.aspects.RepositoryExceptionInterceptor;
 import com.own.space.util.exceptions.InconsistentDataException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
@@ -124,13 +118,13 @@ public class RecordRepositoryImplTest {
     public void getAll_withCorrectUserIdForMainWindow_shouldSucceed(){
         Record save1 = repository.save(createRecord1ForVladWithoutId());
         repository.save(createRecord2ForVladWithoutId());
-        List<Record> all = repository.getAllForMainWindow(USER_VLAD_ID);
+        List<Record> all = repository.getAllMain(USER_VLAD_ID);
         assertMatch(all,save1);
     }
     @Test
     public void getAll_withCorrectParentId_shouldSucceed(){
         Record save2 = repository.save(createRecord2ForVladWithoutId());
-        List<Record> all = repository.getAllForParent(save2.getParentId());
+        List<Record> all = repository.getAllParent(save2.getParentId());
         assertMatch(all,save2);
     }
     @Test

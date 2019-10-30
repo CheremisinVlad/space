@@ -2,17 +2,11 @@ package com.own.space.repository.dataJpa;
 
 import com.own.space.domain.Directory;
 import com.own.space.repository.BlockRepository;
-import com.own.space.repository.impls.DirectoryRepositoryImpl;
-import com.own.space.util.aspects.RepositoryExceptionInterceptor;
 import com.own.space.util.exceptions.InconsistentDataException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
@@ -95,13 +89,13 @@ public class DirectoryRepositoryImplTest {
     public void getAll_withCorrectUserIdForMainWindow_shouldSucceed(){
         Directory save1 = repository.save(createDirectory1ForVladWithoutId());
         repository.save(createDirectory2ForVladWithoutId());
-        List<Directory> all = repository.getAllForMainWindow(USER_VLAD_ID);
+        List<Directory> all = repository.getAllMain(USER_VLAD_ID);
         assertMatch(all,save1);
     }
     @Test
     public void getAll_withCorrectParentId_shouldSucceed(){
         Directory save2 = repository.save(createDirectory2ForVladWithoutId());
-        List<Directory> all = repository.getAllForParent(save2.getParentId());
+        List<Directory> all = repository.getAllParent(save2.getParentId());
         assertMatch(all,save2);
     }
     @Test

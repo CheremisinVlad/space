@@ -19,12 +19,12 @@ public interface CrudBlockRepository<T extends AbstractBaseBlock> extends JpaRep
     List<T> getAll(@Param("userId")int userId);
 
     @Query("SELECT d FROM #{#entityName} d WHERE d.parentId=:parentId")
-    List<T> getAllForParent(@Param("parentId")int parentId);
+    List<T> getAllParent(@Param("parentId")int parentId);
 
     @Query("DELETE FROM #{#entityName} d WHERE d.id=:id")
     @Modifying
     int delete(@Param("id")int id);
 
     @Query("SELECT d FROM #{#entityName} d WHERE d.userId=:userId AND d.parentId=0")
-    List<T> getAllForMainWindow(@Param("userId")int userId);
+    List<T> getAllMain(@Param("userId")int userId);
 }

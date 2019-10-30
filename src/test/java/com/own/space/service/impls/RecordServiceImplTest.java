@@ -90,20 +90,34 @@ public class RecordServiceImplTest {
 
     @Test
     public void getAllForParent_existingRecord_shouldPass() {
-        when(mockRepository.getAllForParent(RECORD1_VLAD_ID)).thenReturn(List.of(RECORD1_VLAD));
+        when(mockRepository.getAllParent(RECORD1_VLAD_ID)).thenReturn(List.of(RECORD1_VLAD));
 
-        List<Record> records = service.getAllForParent(RECORD1_VLAD_ID);
+        List<Record> records = service.getAllParent(RECORD1_VLAD_ID);
 
         assertMatch(records,RECORD1_VLAD);
     }
 
     @Test
     public void getAllForMainWindow_existingRecord_shouldPass() {
-        when(mockRepository.getAllForMainWindow(USER_VLAD_ID)).thenReturn(List.of(RECORD2_VLAD));
+        when(mockRepository.getAllMain(USER_VLAD_ID)).thenReturn(List.of(RECORD2_VLAD));
 
-        List<Record> records = service.getAllForMainWindow(USER_VLAD_ID);
+        List<Record> records = service.getAllMain(USER_VLAD_ID);
 
         assertMatch(records,RECORD2_VLAD);
+    }
+    @Test
+    public void getById_existingDirectory_shouldPass(){
+        when(mockRepository.getById(RECORD1_VLAD_ID)).thenReturn(RECORD1_VLAD);
+
+        Record record = service.get(RECORD1_VLAD_ID);
+
+        assertMatch(record,RECORD1_VLAD);
+    }
+    @Test(expected = NotFoundException.class)
+    public void getById_notExistingDirectory_shouldPass(){
+        when(mockRepository.getById(1)).thenThrow(NotFoundException.class);
+
+        service.get(1);
     }
 
 }
