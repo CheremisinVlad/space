@@ -90,9 +90,9 @@ public class UrlServiceImplTest {
 
     @Test
     public void getAllForParent_existingUrl_shouldPass() {
-        when(mockRepository.getAllParent(URL1_VLAD_ID)).thenReturn(List.of(URL2_VLAD));
+        when(mockRepository.getAllParent(URL1_VLAD_ID,USER_VLAD_ID)).thenReturn(List.of(URL2_VLAD));
 
-        List<Url> urls = service.getAllParent(URL1_VLAD_ID);
+        List<Url> urls = service.getAllParent(URL1_VLAD_ID,USER_VLAD_ID);
 
         assertMatch(urls,URL2_VLAD);
     }

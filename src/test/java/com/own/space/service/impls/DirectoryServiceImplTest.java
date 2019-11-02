@@ -35,11 +35,11 @@ public class DirectoryServiceImplTest {
     public void create_newDirectory_shouldPass() {
         Directory directory = createDirectory1ForVladWithoutId();
         when(mockRepository.save(directory)).thenReturn(DIRECTORY1_VLAD);
-        when(mockRepository.getAll(USER_VLAD_ID)).thenReturn(List.of(DIRECTORY1_VLAD,DIRECTORY2_VLAD));
+        when(mockRepository.getAll(USER_VLAD_ID)).thenReturn(List.of(DIRECTORY1_VLAD, DIRECTORY2_VLAD_WITH_PARENT1));
 
         Directory created = service.save(directory);
         assertMatch(DIRECTORY1_VLAD,created);
-        assertMatch(service.getAll(USER_VLAD_ID),DIRECTORY1_VLAD,DIRECTORY2_VLAD);
+        assertMatch(service.getAll(USER_VLAD_ID),DIRECTORY1_VLAD, DIRECTORY2_VLAD_WITH_PARENT1);
     }
 
     @Test
@@ -81,20 +81,20 @@ public class DirectoryServiceImplTest {
 
     @Test
     public void getAll_existingDirectory_shouldPass() {
-        when(mockRepository.getAll(USER_VLAD_ID)).thenReturn(List.of(DIRECTORY1_VLAD,DIRECTORY2_VLAD));
+        when(mockRepository.getAll(USER_VLAD_ID)).thenReturn(List.of(DIRECTORY1_VLAD, DIRECTORY2_VLAD_WITH_PARENT1));
 
         List<Directory> directories = service.getAll(USER_VLAD_ID);
 
-        assertMatch(directories,DIRECTORY1_VLAD,DIRECTORY2_VLAD);
+        assertMatch(directories,DIRECTORY1_VLAD, DIRECTORY2_VLAD_WITH_PARENT1);
     }
 
     @Test
     public void getAllForParent_existingDirectory_shouldPass() {
-        when(mockRepository.getAllParent(DIRECTORY1_VLAD_ID)).thenReturn(List.of(DIRECTORY2_VLAD));
+        when(mockRepository.getAllParent(DIRECTORY1_VLAD_ID,USER_VLAD_ID)).thenReturn(List.of(DIRECTORY2_VLAD_WITH_PARENT1));
 
-        List<Directory> directories = service.getAllParent(DIRECTORY1_VLAD_ID);
+        List<Directory> directories = service.getAllParent(DIRECTORY1_VLAD_ID,USER_VLAD_ID);
 
-        assertMatch(directories,DIRECTORY2_VLAD);
+        assertMatch(directories, DIRECTORY2_VLAD_WITH_PARENT1);
     }
 
     @Test

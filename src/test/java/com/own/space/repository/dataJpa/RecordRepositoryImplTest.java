@@ -124,7 +124,7 @@ public class RecordRepositoryImplTest {
     @Test
     public void getAll_withCorrectParentId_shouldSucceed(){
         Record save2 = repository.save(createRecord2ForVladWithoutId());
-        List<Record> all = repository.getAllParent(save2.getParentId());
+        List<Record> all = repository.getAllParent(save2.getParentId(),save2.getUserId());
         assertMatch(all,save2);
     }
     @Test

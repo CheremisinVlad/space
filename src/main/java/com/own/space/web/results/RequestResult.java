@@ -16,7 +16,7 @@ public class RequestResult extends HashMap<String,Object> {
     }
 
     public static RequestResult withMessage(String message) {
-        Assert.hasText(message, "Parameter `message` must not be empty");
+        Assert.hasText(message, "Parameter message must not be empty");
 
         RequestResult apiResult = new RequestResult();
         apiResult.put("message", message);
@@ -24,8 +24,8 @@ public class RequestResult extends HashMap<String,Object> {
     }
 
     public static RequestResult withError(String message, String errorCode) {
-        Assert.hasText(message, "Parameter `message` must not be empty");
-        Assert.hasText(errorCode, "Parameter `errorReferenceCode` must not be blank");
+        Assert.hasText(message, "Parameter message must not be empty");
+        Assert.hasText(errorCode, "Parameter errorReferenceCode must not be blank");
 
         RequestResult apiResult = new RequestResult();
         apiResult.put(RETURN_MESSAGE, message);
@@ -34,8 +34,8 @@ public class RequestResult extends HashMap<String,Object> {
     }
 
     public RequestResult add(String key, Object value) {
-        Assert.hasText(key, "Parameter `key` must not be blank");
-        Assert.notNull(value, "Parameter `value` must not be null");
+        Assert.hasText(key, "Parameter key must not be blank");
+        Assert.notNull(value, "Parameter value must not be null");
 
         this.put(key, value);
         return this;

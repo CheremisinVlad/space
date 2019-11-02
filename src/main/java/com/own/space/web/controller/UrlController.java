@@ -1,15 +1,15 @@
 package com.own.space.web.controller;
 
-import com.own.space.domain.Directory;
+import com.own.space.domain.Url;
 import com.own.space.service.BlockService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(path = "/directories")
-public class DirectoryController  extends BlockController<Directory>{
+@RequestMapping(path = "/urls")
+public class UrlController extends BlockController<Url> {
 
-    public DirectoryController(BlockService<Directory> service) {
+    public UrlController(BlockService<Url> service) {
         super(service);
     }
 }

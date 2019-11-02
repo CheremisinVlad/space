@@ -90,9 +90,9 @@ public class RecordServiceImplTest {
 
     @Test
     public void getAllForParent_existingRecord_shouldPass() {
-        when(mockRepository.getAllParent(RECORD1_VLAD_ID)).thenReturn(List.of(RECORD1_VLAD));
+        when(mockRepository.getAllParent(RECORD1_VLAD_ID,USER_VLAD_ID)).thenReturn(List.of(RECORD1_VLAD));
 
-        List<Record> records = service.getAllParent(RECORD1_VLAD_ID);
+        List<Record> records = service.getAllParent(RECORD1_VLAD_ID,USER_VLAD_ID);
 
         assertMatch(records,RECORD1_VLAD);
     }

@@ -95,7 +95,7 @@ public class DirectoryRepositoryImplTest {
     @Test
     public void getAll_withCorrectParentId_shouldSucceed(){
         Directory save2 = repository.save(createDirectory2ForVladWithoutId());
-        List<Directory> all = repository.getAllParent(save2.getParentId());
+        List<Directory> all = repository.getAllParent(save2.getParentId(),save2.getUserId());
         assertMatch(all,save2);
     }
     @Test

@@ -18,6 +18,8 @@ public class UrlTestData {
 
     public static final Url URL1_VLAD = new Url(URL1_VLAD_ID,USER_VLAD_ID,DIRECTORY1_VLAD_ID,"https://github.com","it's null url");
     public static final Url URL2_VLAD = new Url(URL2_VLAD_ID ,USER_VLAD_ID,0,"https://github.com","it's null url");
+    public static final Url URl2_VLAD_WITH_PARENT1 = new Url(URL1_VLAD_ID,USER_VLAD_ID,DIRECTORY1_VLAD_ID,"https://github.com","url 2");
+    public static final Url URl3_VLAD_WITH_PARENT1 = new Url(URL1_VLAD_ID,USER_VLAD_ID,DIRECTORY1_VLAD_ID,"https://github.com","url 3");
 
 
     public static void assertMatch(Url actual, Url expected){

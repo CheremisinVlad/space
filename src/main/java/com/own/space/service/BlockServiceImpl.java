@@ -54,8 +54,8 @@ public class BlockServiceImpl<T extends AbstractBaseBlock> implements BlockServi
     }
 
     @Override
-    public List<T> getAllParent(int parentId) {
-        return repository.getAllParent(parentId);
+    public List<T> getAllParent(int parentId,int userId) {
+        return repository.getAllParent(parentId,userId);
     }
 
     @Override

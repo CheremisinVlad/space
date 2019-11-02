@@ -17,7 +17,7 @@ public interface BlockService<T extends AbstractBaseBlock> {
 
     List<T> getAll(int userId);
 
-    List<T> getAllParent(int parentId);
+    List<T> getAllParent(int parentId,int userId);
 
     List<T> getAllMain(int userId);
 }

@@ -106,7 +106,7 @@ public class UrlRepositoryImplTest{
     @Test
     public void getAll_withCorrectParentId_shouldSucceed(){
         Url save2 = repository.save(createUrl2ForVladWithoutId());
-        List<Url> all = repository.getAllParent(save2.getParentId());
+        List<Url> all = repository.getAllParent(save2.getParentId(),save2.getUserId());
         assertMatch(all,save2);
     }
     @Test

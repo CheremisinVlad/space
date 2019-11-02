@@ -18,8 +18,8 @@ public interface CrudBlockRepository<T extends AbstractBaseBlock> extends JpaRep
     @Query("SELECT d FROM  #{#entityName} d WHERE d.userId=:userId")
     List<T> getAll(@Param("userId")int userId);
 
-    @Query("SELECT d FROM #{#entityName} d WHERE d.parentId=:parentId")
-    List<T> getAllParent(@Param("parentId")int parentId);
+    @Query("SELECT d FROM #{#entityName} d WHERE d.parentId=:parentId AND d.userId=:userId ")
+    List<T> getAllParent(@Param("parentId")int parentId,@Param("userId")int userId);
 
     @Query("DELETE FROM #{#entityName} d WHERE d.id=:id")
     @Modifying

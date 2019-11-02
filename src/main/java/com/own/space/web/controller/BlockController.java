@@ -1,13 +1,12 @@
 package com.own.space.web.controller;
 
 import com.own.space.domain.AbstractBaseBlock;
-import com.own.space.domain.AuthUser;
 import com.own.space.service.BlockService;
-import com.own.space.web.payload.RegisteredUser;
-import com.own.space.web.results.BlockResult;
-import com.own.space.web.results.RequestResult;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 public class BlockController<T extends AbstractBaseBlock> {
@@ -18,28 +17,38 @@ public class BlockController<T extends AbstractBaseBlock> {
         this.service = service;
     }
 
-    @PostMapping
-    public ResponseEntity<RequestResult> create(@RequestBody T block,
-                                                @RegisteredUser AuthUser currentUser) {
-        block.setUserId(currentUser.getId());
+    @PostMapping("/create")
+    public ResponseEntity<T> create(@RequestBody T block) {
         T newBlock = service.save(block);
-        return BlockResult.buildCreateResult(newBlock);
+        return ResponseEntity.ok(newBlock);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<T> get(@PathVariable int id) {
+        T block = service.get(id);
+        return ResponseEntity.ok(block);
     }
 
-    @PatchMapping
-    public ResponseEntity<RequestResult> update(@RequestBody T block,
-                                                @RegisteredUser AuthUser currentUser) {
-        block.setUserId(currentUser.getId());
-        T newBlock = service.update(block);
-        return BlockResult.buildUpdateResult(newBlock);
+    @PostMapping("/update")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@RequestBody T block) {
+        service.update(block);
     }
 
-    @DeleteMapping
-    public ResponseEntity<RequestResult> delete(@RequestBody T block,
-                                                @RegisteredUser AuthUser currentUser) {
-        block.setUserId(currentUser.getId());
-        boolean deleted = service.delete(block.getId());
-        return BlockResult.buildDeleteResult(deleted);
+    @PostMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id) {
+        service.delete(id);
+    }
+
+    @GetMapping("/main/{userId}")
+    public ResponseEntity<List<T>> getAllMain(@PathVariable int userId) {
+        List<T> newBlocks = service.getAllMain(userId);
+        return ResponseEntity.ok(newBlocks);
+    }
+    @GetMapping("/{userId}/{parentId}")
+    public ResponseEntity<List<T>> getAllParent(@PathVariable int userId,@PathVariable int parentId) {
+        List<T> newBlocks = service.getAllParent(parentId,userId);
+        return ResponseEntity.ok(newBlocks);
     }
 
 
