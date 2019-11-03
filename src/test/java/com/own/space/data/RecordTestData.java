@@ -15,9 +15,13 @@ public class RecordTestData {
 
     public static int RECORD1_VLAD_ID = START_SEQ;
     public static int RECORD2_VLAD_ID = START_SEQ+1;
+    public static int RECORD2_VLAD_WITH_PARENT1_ID = START_SEQ+2;
+    public static int RECORD3_VLAD_WITH_PARENT1_ID = START_SEQ+3;
 
     public static final Record RECORD1_VLAD = new Record(RECORD1_VLAD_ID,USER_VLAD_ID,DIRECTORY1_VLAD_ID,"test","test content","test is everything for anyone");
     public static final Record RECORD2_VLAD = new Record(RECORD2_VLAD_ID ,USER_VLAD_ID,0,"main record","test content","test is everything for anyone");
+    public static final Record RECORD2_VLAD_WITH_PARENT1 =new Record(RECORD2_VLAD_WITH_PARENT1_ID,USER_VLAD_ID,DIRECTORY1_VLAD_ID,"test 1","test content 1","test is everything for anyone 1");
+    public static final Record RECORD3_VLAD_WITH_PARENT1 =new Record(RECORD3_VLAD_WITH_PARENT1_ID,USER_VLAD_ID,DIRECTORY1_VLAD_ID,"test 2","test content 2","test is everything for anyone 2");
 
     public static void assertMatch(Record actual, Record expected){
         assertThat(actual).isEqualToIgnoringGivenFields(expected);
@@ -86,7 +90,7 @@ public class RecordTestData {
     }
 
     public static Record createRecord1ForVladWithoutId() {
-        return new Record(USER_VLAD_ID,0,"test","test content","tests is everything for anyone");
+        return new Record(USER_VLAD_ID,DIRECTORY1_VLAD_ID,"test","test content","tests is everything for anyone");
     }
 
     public static Record createRecord2ForVladWithoutId() {
