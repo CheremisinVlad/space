@@ -87,9 +87,7 @@ public class UrlControllerTest {
         doReturn(URL1_VLAD)
                 .when(service).get(URL1_VLAD_ID);
 
-        mvc.perform(get("/urls/{id}",URL1_VLAD_ID)
-                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
-                .content(JsonUtils.jsonFromObj(URL1_VLAD)))
+        mvc.perform(get("/urls/{id}",URL1_VLAD_ID))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
@@ -107,9 +105,7 @@ public class UrlControllerTest {
         doThrow(NotFoundException.class)
                 .when(service).get(1);
 
-        mvc.perform(get("/urls/{id}",1)
-                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
-                .content(JsonUtils.jsonFromObj(UrlTestData.createNotExisted())))
+        mvc.perform(get("/urls/{id}",1))
                 .andDo(print())
                 .andExpect(status().isNotFound());
 

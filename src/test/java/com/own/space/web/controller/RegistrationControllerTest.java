@@ -30,9 +30,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest
 @ActiveProfiles("test")
-@ContextConfiguration(classes = {SecurityConfig.class,RegistrationController.class})
+@ContextConfiguration(classes = {SecurityConfig.class,RegistrationController.class,WebTestConfiguration.class})
 public class RegistrationControllerTest {
-    private static final String URL = "/api/registration";
+    private static final String URL = "/registration";
 
     @Autowired
     private MockMvc mvc;
@@ -96,7 +96,7 @@ public class RegistrationControllerTest {
                 post(URL)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(JsonUtils.jsonFromObj(newUser)))
-                .andExpect(status().is(201));
+                .andExpect(status().isCreated());
     }
 
 }

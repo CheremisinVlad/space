@@ -88,9 +88,7 @@ public class RecordControllerTest {
         doReturn(RECORD1_VLAD)
                 .when(service).get(RECORD1_VLAD_ID);
 
-        mvc.perform(get("/records/{id}",RECORD1_VLAD_ID)
-                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
-                .content(JsonUtils.jsonFromObj(RECORD1_VLAD)))
+        mvc.perform(get("/records/{id}",RECORD1_VLAD_ID))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
@@ -109,9 +107,7 @@ public class RecordControllerTest {
         doThrow(NotFoundException.class)
                 .when(service).get(1);
 
-        mvc.perform(get("/records/{id}",1)
-                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
-                .content(JsonUtils.jsonFromObj(createNotExisted())))
+        mvc.perform(get("/records/{id}",1))
                 .andDo(print())
                 .andExpect(status().isNotFound());
 

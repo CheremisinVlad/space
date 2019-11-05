@@ -87,9 +87,7 @@ public class DirectoryControllerTest {
         doReturn(DIRECTORY1_VLAD)
                 .when(service).get(DIRECTORY1_VLAD_ID);
 
-        mvc.perform(get("/directories/{id}",DIRECTORY1_VLAD_ID)
-                    .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
-                    .content(JsonUtils.jsonFromObj(DIRECTORY1_VLAD)))
+        mvc.perform(get("/directories/{id}",DIRECTORY1_VLAD_ID))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
@@ -106,9 +104,7 @@ public class DirectoryControllerTest {
         doThrow(NotFoundException.class)
                 .when(service).get(1);
 
-        mvc.perform(get("/directories/{id}",1)
-                    .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
-                    .content(JsonUtils.jsonFromObj(createNotExisted())))
+        mvc.perform(get("/directories/{id}",1))
                 .andDo(print())
                 .andExpect(status().isNotFound());
 
