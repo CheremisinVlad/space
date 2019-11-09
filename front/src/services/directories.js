@@ -4,7 +4,7 @@ import errorParser from '@/util/error-parser'
 export default {
   create(directory){
     return new Promise((resolve, reject) => {
-      axios.post('/directory', directory)
+      axios.post('/directories', directory)
         .then(({data}) => {
           resolve(data)
         })
@@ -15,7 +15,7 @@ export default {
   },
   delete(directory){
     return new Promise((resolve, reject) => {
-      axios.delete('/directory', directory)
+      axios.delete('/directories', directory)
         .then(({data}) => {
           resolve(data)
         })

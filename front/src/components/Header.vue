@@ -38,6 +38,7 @@
           ])
         },
         created() {
+          console.log('created')
           this.$store.dispatch('getData')
         }
     }
