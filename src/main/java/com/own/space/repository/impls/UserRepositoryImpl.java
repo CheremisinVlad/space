@@ -4,6 +4,8 @@ import com.own.space.domain.User;
 import com.own.space.repository.UserRepository;
 import com.own.space.repository.dataJpa.CrudUserRepository;
 import com.own.space.util.encription.PasswordEncryptor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
@@ -12,6 +14,9 @@ import java.util.List;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
+
+    private static final Logger LOG = LoggerFactory.getLogger(UserRepositoryImpl.class);
+
     public static final Sort SORT_BY_NAME = Sort.by("name");
 
     private CrudUserRepository repository;
@@ -25,8 +30,10 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User save(User user) {
+
         String password = encryptor.encrypt(user.getPassword());
         user.setPassword(password);
+        LOG.debug("user repository save {}",user);
         return repository.save(user);
     }
 

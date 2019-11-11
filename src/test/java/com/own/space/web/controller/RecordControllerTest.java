@@ -71,8 +71,8 @@ public class RecordControllerTest {
     public void create_newRecordWithIncorrectData_shouldFail() throws Exception {
         Record newRecord = createRecordWithNullContent();
 
-        doThrow(InconsistentDataException.class)
-                .when(service).save(newRecord);
+        when(service.save(newRecord)).
+                thenThrow(new InconsistentDataException("data is incorrect"));
 
         mvc.perform(post("/records/create")
                 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)

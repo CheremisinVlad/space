@@ -5,14 +5,14 @@ export const hasSpace = state => {
 }
 
 export const mainDirectories = state => {
-  state.directories.filter(dir => dir.parentId === 0)
+  return state.directories.filter(dir => dir.parentId === 0)
 }
 
 export const mainUrls = state => {
-  state.urls.filter(url => url.dir.parentId === 0)
+  return state.urls.filter(url => url.dir.parentId === 0)
 }
 
 export const mainRecords = state => {
-  state.records.filter(record => record.dir.parentId === 0)
+  return state.records.filter(record => record.dir.parentId === 0)
 }
 

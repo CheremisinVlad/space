@@ -8,6 +8,7 @@ import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)
 
 axios.defaults.baseURL = '/'
+
 axios.defaults.headers.common.Accept = 'application/json'
 axios.interceptors.response.use(
   response => response,

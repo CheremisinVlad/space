@@ -1,10 +1,12 @@
 package com.own.space.config;
 
+import com.own.space.util.aspects.RepositoryExceptionInterceptor;
 import com.own.space.web.security.authenticate.JsonAuthFilter;
 import com.own.space.web.security.handlers.SimpleAuthFailureHandler;
 import com.own.space.web.security.handlers.SimpleAuthSuccessHandler;
 import com.own.space.web.security.handlers.SimpleLogoutSuccessHandler;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,10 +19,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 @EnableWebSecurity
+
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] ALLOWED = new String[]{
-            "/login","/register","/api/registration","logout","/error"
+            "/login","/register","/registration","/logout","/error"
     };
     private static final String[] STATIC_CONTENT = new String[]{
             "/images/**","/js/**","/css/**","/static/**"
@@ -70,4 +73,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authFilter.setAuthenticationManager(authenticationManagerBean());
         return authFilter;
     }
+
 }

@@ -9,6 +9,8 @@ import com.own.space.util.mail.EmailMessage;
 import com.own.space.util.mail.MailSender;
 import com.own.space.repository.UserRepository;
 import com.own.space.util.exceptions.NotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,6 +24,7 @@ import static com.own.space.service.validation.Validation.*;
 @Service
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
+    private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
 
     private UserRepository repository;
@@ -43,8 +46,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User create(User user) {
         checkNew(user);
+        LOG.debug("create user: {}",user);
         User newUser = repository.save(user);
-        sendRegistrationMessage(newUser);
+      //  sendRegistrationMessage(newUser);
         publisher.publish(new UserCreatedEvent(newUser));
         return newUser;
     }

@@ -1,8 +1,14 @@
 import spaceService from '../services/space'
+import authService from '../services/authentication'
 
-export const getData = ({commit}) => {
-  spaceService.getData().then(data => {
+export const getData = ({commit},userId) => {
+  spaceService.getData(userId).then(data => {
     commit('updateData',data)
+  })
+}
+export const authenticate = ({commit},user) => {
+  authService.authenticate(user).then(data => {
+    commit('updateCurrentUser',data)
   })
 }
 

@@ -7,19 +7,19 @@
 
       <div class="space container">
         <div class="row">
-          <div class="col-4">
-            <div class="spaces d-flex align-content-start flex-wrap">
+          <div class="col-3">
+            <div class="spaces ">
               <div class="directory add list-group-item" @click="createDirectory()">
                 <button class="btn btn-link">+ Create New Directory</button>
               </div>
-              <div class="directory list-group" v-for="directory in mainDirectories"
+              <div class="directory list-group-item" v-for="directory in mainDirectories"
                    :key="directory.id" @click="openDirectory(directory)">
                 <h2 class="section-title">{{ directory.name }}</h2>
               </div>
             </div>
           </div>
-          <div class="col-4">
-            <div class="spaces d-flex align-content-start flex-wrap">
+          <div class="col-3 ">
+            <div class="spaces ">
               <div class="record add list-group-item" @click="createRecord()">
                 <button class="btn btn-link">+ Create New Record</button>
               </div>
@@ -29,11 +29,12 @@
               </div>
             </div>
           </div>
-          <div class="col-4">
-            <div class="url add list-group-item" @click="createUrl()">
-              <button class="btn btn-link">+ Create New Url</button>
-            </div>
-            <div class="spaces d-flex align-content-start flex-wrap">
+          <div class="col-6 ">
+
+            <div class="spaces ">
+              <div class="url add list-group-item" @click="createUrl()">
+                <button class="btn btn-link">+ Create New Url</button>
+              </div>
               <div class="url list-group" v-for="url in mainUrls"
                    :key="url.id" @click="openUrl(url)">
                 <h2 class="section-title">{{ url.url }}</h2>

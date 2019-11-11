@@ -9,7 +9,9 @@ Vue.use(Vuex)
 
 const state = {
   user: {
-    name: null
+    name: null,
+    userId: 0,
+    authenticated: false
   },
   directories: [],
   urls: [],

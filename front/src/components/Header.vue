@@ -25,7 +25,6 @@
 </template>
 <script>
   import { mapGetters } from 'vuex'
-
     export default {
         name: 'Header',
         computed: {
@@ -38,8 +37,8 @@
           ])
         },
         created() {
-          console.log('created')
-          this.$store.dispatch('getData')
+          console.log(this.$store.state.user.userId)
+          this.$store.dispatch('getData',this.$store.state.user.userId)
         }
     }
 </script>

@@ -9,12 +9,12 @@
             <label for="username">Username or emailMessage</label>
             <input type="text" class="form-control" id="username" v-model="form.username">
             <div class="field-error" v-if="$v.form.username.$dirty">
-              <div class="error" v-if="!$v.form.username.required">input username or emailMessage</div>
+              <div class="error" v-if="!$v.form.username.required">input username</div>
             </div>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="text" class="form-control" id="password" v-model="form.password">
+            <input type="password" class="form-control" id="password" v-model="form.password">
             <div class="field-error" v-if="$v.form.password.$dirty">
             <div class="error" v-if="!$v.form.password.required">input password</div>
           </div>
@@ -32,7 +32,6 @@
 </template>
 
 <script>
-  import authenticationService from '@/services/authentication'
   import {required} from 'vuelidate/lib/validators'
   import Logo from '@/components/Logo.vue'
   import Footer from '@/components/Footer.vue'
@@ -62,16 +61,16 @@
       }
     },
     methods: {
-      submitForm(){
+      submitForm() {
         this.$v.$touch()
-        if(this.$v.$error){
+        if (this.$v.$error) {
           return
         }
-        authenticationService.authenticate(this.form).then(()=>{
-          this.$router.push({name: 'HomePage'})
-        }).catch((error)=>{
+        this.$store.dispatch('authenticate', this.form)
+          .then(() => {
+            this.$router.push({name: 'HomePage'})
+          }).catch((error) => {
           this.errorMessage = error.message
-
         })
 
       }

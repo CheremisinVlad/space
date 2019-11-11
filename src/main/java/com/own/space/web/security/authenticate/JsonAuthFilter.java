@@ -20,7 +20,7 @@ public class JsonAuthFilter extends AbstractAuthenticationProcessingFilter {
     private static final Logger LOG = LoggerFactory.getLogger(JsonAuthFilter.class);
 
     public JsonAuthFilter() {
-        super(new AntPathRequestMatcher("/api/authentication", "POST"));
+        super(new AntPathRequestMatcher("/authentication", "POST"));
     }
 
     @Override

@@ -70,8 +70,9 @@ public class DirectoryControllerTest {
     public void create_newDirectoryWithIncorrectData_shouldFail() throws Exception {
         Directory newDirectory = DirectoryTestData.createDirectoryWithNameMoreThenSize();
 
-        doThrow(InconsistentDataException.class)
-                .when(service).save(newDirectory);
+        when(service.save(newDirectory)).
+             thenThrow(new InconsistentDataException("data is incorrect"));
+
 
         mvc.perform(post("/directories/create")
                     .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)

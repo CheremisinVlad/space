@@ -42,7 +42,9 @@
       data () {
         return {
           directory: {
-            name: ''
+            name: '',
+            userId:'',
+            parentId:0
           },
           errorMessage: ''
         }
@@ -73,8 +75,8 @@
             return
           }
           const directory = {
-            userId: this.userId,
-            parentId: this.parentId,
+            userId: this.$store.state.user.userId,
+            parentId: this.directory.parentId,
             name: this.directory.name
           }
           directoryService.create(directory).then((createdDirectory) => {

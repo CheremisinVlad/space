@@ -1,8 +1,12 @@
 export default {
   updateData(state,data){
-    state.user.name = data.user.name
     state.directories = data.directories
     state.urls = data.urls
+  },
+  updateCurrentUser(state,user){
+    state.user.authenticated= user.authenticated
+    state.user.userId= user.userId
+    state.user.name = user.name
   },
   addDirectory(state,directory){
     state.directories.push(directory)

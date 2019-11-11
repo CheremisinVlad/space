@@ -22,7 +22,8 @@ public class ControllersExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)  // 400
     @ExceptionHandler(InconsistentDataException.class)
-    public void handleIncorrectData(){
+    public ResponseEntity<RequestResult> handleIncorrectData(InconsistentDataException ex){
+        return ResultUtil.error(ex.getMessage());
     }
 
     @ExceptionHandler(EmailExistsException .class)

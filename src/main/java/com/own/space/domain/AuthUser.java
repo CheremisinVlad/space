@@ -26,6 +26,10 @@ public class AuthUser implements UserDetails {
         return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     @Override
     public String getPassword() {
         return password;

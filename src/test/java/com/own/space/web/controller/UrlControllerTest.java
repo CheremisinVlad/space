@@ -70,8 +70,8 @@ public class UrlControllerTest {
     public void create_newUrlWithIncorrectData_shouldFail() throws Exception {
        Url newUrl = createUrlWithInvalidValue();
 
-        doThrow(InconsistentDataException.class)
-                .when(service).save(newUrl);
+        when(service.save(newUrl)).
+                thenThrow(new InconsistentDataException("data is incorrect"));
 
         mvc.perform(post("/urls/create")
                 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)

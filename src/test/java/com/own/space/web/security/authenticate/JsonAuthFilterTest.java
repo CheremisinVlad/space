@@ -17,7 +17,7 @@ import java.io.IOException;
 @RunWith(SpringRunner.class)
 public class JsonAuthFilterTest {
 
-    private final String AUTH_URL = "/api/authentications";
+    private final String AUTH_URL = "/authentications";
     private final String METHOD = "POST";
 
     @MockBean

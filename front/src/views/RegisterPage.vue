@@ -70,6 +70,7 @@
           return
         }
         registrationService.register(this.form).then(()=>{
+          console.log('registered')
           this.$router.push({name:'LoginPage'})
         }).catch((error)=>{
           this.errorMessage = 'Failed to register user: ' + (error.template ? error.template : 'Unknown') + "."

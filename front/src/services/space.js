@@ -2,9 +2,9 @@ import errorParser from '../util/error-parser'
 import axios from 'axios'
 
 export default {
-  getData(){
+  getData(userId){
     return new Promise((resolve,reject) => {
-      axios.get('/space')
+      axios.get('/space/' + userId)
         .then(({data}) => {
           resolve(data)
         })

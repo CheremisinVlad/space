@@ -1,8 +1,10 @@
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 module.exports = {
   devServer:{
     port:3000,
     proxy:{
-      '/api/*':{
+      '':{
         target:'http://localhost:8080'
       }
     }
@@ -13,6 +15,8 @@ module.exports = {
       style: [
         'bootstrap/dist/css/bootstrap.min.css'
       ]
-    }
+    },plugins: [
+      new CleanWebpackPlugin()
+    ]
   }
 }
