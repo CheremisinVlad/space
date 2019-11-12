@@ -68,7 +68,10 @@
         }
         this.$store.dispatch('authenticate', this.form)
           .then(() => {
-            this.$router.push({name: 'HomePage'})
+
+              this.$router.push({name: 'HomePage'})
+
+
           }).catch((error) => {
           this.errorMessage = error.message
         })

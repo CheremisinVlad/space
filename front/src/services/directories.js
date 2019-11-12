@@ -15,7 +15,7 @@ export default {
   },
   delete(directory){
     return new Promise((resolve, reject) => {
-      axios.delete('/directories/', directory)
+      axios.delete('/directories/delete', directory)
         .then(({data}) => {
           resolve(data)
         })

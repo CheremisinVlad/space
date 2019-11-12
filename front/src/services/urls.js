@@ -4,7 +4,7 @@ import axios from 'axios'
 export default {
   create(url){
     return new Promise((resolve,reject) => {
-      axios.post('/urls',url)
+      axios.post('/urls/create',url)
         .then(({data}) => {
           resolve(data)
         })
@@ -15,7 +15,7 @@ export default {
   },
   delete(url){
     return new Promise((resolve,reject) => {
-      axios.delete('/urls',url)
+      axios.delete('/urls/delete',url)
         .then(({data}) => {
           resolve(data)
         })

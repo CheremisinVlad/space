@@ -46,6 +46,7 @@
     data () {
       return {
         url: {
+          parentId: 0,
           url: '',
           description: ''
         },
@@ -77,8 +78,8 @@
           return
         }
         const url = {
-          userId: this.userId,
-          parentId: this.parentId,
+          userId: this.$store.state.user.userId,
+          parentId: this.url.parentId,
           url: this.url.url,
           description: this.url.description
         }

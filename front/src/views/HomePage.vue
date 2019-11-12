@@ -23,7 +23,7 @@
               <div class="record add list-group-item" @click="createRecord()">
                 <button class="btn btn-link">+ Create New Record</button>
               </div>
-              <div class="record list-group" v-for="record in mainRecords"
+              <div class="record list-group-item" v-for="record in mainRecords"
                    :key="record.id" @mousemove="showRecord(record)">
                 <h2 class="section-title">{{ record.name }}</h2>
               </div>
@@ -35,9 +35,9 @@
               <div class="url add list-group-item" @click="createUrl()">
                 <button class="btn btn-link">+ Create New Url</button>
               </div>
-              <div class="url list-group" v-for="url in mainUrls"
-                   :key="url.id" @click="openUrl(url)">
-                <h2 class="section-title">{{ url.url }}</h2>
+              <div class="url list-group-item" v-for="url in mainUrls"
+                   :key="url.id" @click="openUrl(url.id)">
+                <h2 class="section-title">{{ url.description }}</h2>
               </div>
             </div>
 
@@ -63,6 +63,7 @@
       name: 'HomePage',
       data () {
         return {
+
           selectedDirectoryId: 0
         }
       },
@@ -72,6 +73,9 @@
           'mainUrls',
           'mainRecords'
         ])
+      },
+      mounted() {
+        this.$store.dispatch('getData',this.$store.state.user.userId)
       },
       components: {
         Header,
@@ -90,8 +94,10 @@
         createUrl () {
           $('#createUrlModal').modal('show')
         },
-        openUrl(url){
-          this.$router.push({name: url.url})
+        openUrl(id){
+          console.log()
+          window.open(this.$store.state.urls.filter(url => url.id === id)[0].url);
+
         },
         createRecord () {
           $('#createRecordModal').modal('show')

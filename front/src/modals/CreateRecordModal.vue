@@ -53,6 +53,7 @@
     data () {
       return {
         record: {
+          parentId: 0,
           name: '',
           description: '',
           content: ''
@@ -87,8 +88,8 @@
           return
         }
         const record = {
-          userId: this.userId,
-          parentId: this.parentId,
+          userId: this.$store.state.user.userId,
+          parentId: this.record.parentId,
           name: this.record.name,
           description: this.record.description,
           content: this.record.content

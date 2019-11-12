@@ -35,11 +35,8 @@
             'mainRecords',
             'mainUrls'
           ])
-        },
-        created() {
-          console.log(this.$store.state.user.userId)
-          this.$store.dispatch('getData',this.$store.state.user.userId)
         }
+
     }
 </script>
 

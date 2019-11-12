@@ -4,7 +4,7 @@ import errorParser from '@/util/error-parser'
 export default {
   create(record){
     return new Promise((resolve, reject) => {
-      axios.post('/records', record)
+      axios.post('/records/create', record)
         .then(({data}) => {
           resolve(data)
         })
@@ -15,7 +15,7 @@ export default {
   },
   delete(record){
     return new Promise((resolve, reject) => {
-      axios.delete('/records', record)
+      axios.delete('/records/delete', record)
         .then(({data}) => {
           resolve(data)
         })

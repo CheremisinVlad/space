@@ -43,7 +43,6 @@
         return {
           directory: {
             name: '',
-            userId:'',
             parentId:0
           },
           errorMessage: ''
