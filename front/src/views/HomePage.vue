@@ -7,8 +7,8 @@
 
       <div class="space container">
         <div class="row">
-          <div class="col-3">
-            <div class="spaces ">
+          <div class="col-sm">
+            <div class="spaces">
               <div class="directory add list-group-item" @click="createDirectory()">
                 <button class="btn btn-link">+ Create New Directory</button>
               </div>
@@ -18,7 +18,7 @@
               </div>
             </div>
           </div>
-          <div class="col-3 ">
+          <div class="col-sm">
             <div class="spaces ">
               <div class="record add list-group-item" @click="createRecord()">
                 <button class="btn btn-link">+ Create New Record</button>
@@ -29,7 +29,7 @@
               </div>
             </div>
           </div>
-          <div class="col-6 ">
+          <div class="col-sm">
 
             <div class="spaces ">
               <div class="url add list-group-item" @click="createUrl()">
@@ -114,8 +114,17 @@
 
 <style scoped>
 
-  .space {
+  .directory{
+      border-radius: 20px;
+      border-color: #0c5460;
+      font-size: 0.1em;
 
+
+  }
+  .section-title{
+    font-size: revert;
+    overflow-x:hidden;
+    overflow-y:hidden;
   }
 
 </style>
