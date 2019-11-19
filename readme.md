@@ -7,14 +7,6 @@ Database: Postgres
 Frontend: Javascript, Vue.js (Vue 2, Vuex, Vuelidate, Vue router), Bootstrap
 
 Architecture: 
-                    Model --- DAO  -> Database
-                               ^
-                               |
-                               |
-                            Services
-                               ^
-                               |
-                               |
-                      Controllers(Rest Api)
-
-CI: Jenkins                   
+                    Database ---> DAO  ---> Services ---> Controllers(Rest Api) ---> Views
+                              
+                    
